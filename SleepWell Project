@@ -1,0 +1,62 @@
+Project Theme - Digital Wellbeing
+Importance? Digital well-being is crucial in today's world dominated by technology. It focuses on improving people's health and comfort while using digital devices. Managing how much we use technology every day helps reduce problems like eye strain and feeling tired from too much screen time. It also reminds us to be careful about our online privacy and security. This gives us more control over our digital lives. Digital well-being encourages using technology to make us healthier and happier, not stressed or distracted. It's about choosing wisely how we use digital tools to improve our lives. Prioritizing digital well-being helps us have a healthier relationship with technology, making sure it helps us connect and feel empowered rather than making us feel worse.
+
+
+Article 1: Johnson, J. (2024). Negative effects of technology: What to know. Medical News Today. https://www.medicalnewstoday.com/articles/negative-effects-of-technology
+
+
+“Modern technology allows people to be more connected than ever, but this may come at a price. Overuse of social media and mobile devices has been linked to eyestrain, difficulty focusing, and depression”. - Jon Johnson
+
+
+Overuse of digital technologies causes SLEEP PROBLEMS!
+Using technology too close to bedtime may cause issues with sleep. This effect has to do with the fact that blue light, such as the light from cell phones, e-readers, and computers, stimulates the brain. 
+Authors of a 2014 study found that this blue light is enough to disturb the body’s natural circadian rhythm. This disturbance could make it harder to fall asleep or lead to a person feeling less alert the next day. 
+Solutions?
+To avoid the potential impact of blue light on the brain, people can stop using electronic devices that emit blue light in an hour or two before bedtime. 
+Gentle activities to wind down with instead, such as reading a book, doing gentle stretches, or taking a bath, are alternatives.
+The 20-20-20 rule for digital viewing:
+The American Optometric Association recommends using the 20-20-20 rule when using any form of digital screen for longer periods of time.
+To follow the rule, take a 20-second break after every 20 minutes of screen time to look at something at least 20 feet away.
+Doing this may help reduce the strain on the eyes from staring at a screen continuously.
+Article 2: Makin, S. (2018). Searching for digital technology’s effects on well-being. nature. https://www.nature.com/articles/d41586-018-07503-w
+On average, people check their phones every 12 minutes, and one in five adults spends more than 40 hours per week online.
+Effects of the digital environment:
+Shortening attention spans — certainly, diagnoses of attention-deficit hyperactivity disorder (ADHD) have become more common in recent decades. 
+Lowering performance on cognitive tasks.
+Creating the ‘Google effect’ — the idea that people are less likely to recall information if they think they can look it up later.
+Studies in sleep labs have found differences in sleep between people reading on paper and screens before bed. “It’s pretty clear from experimental work that sleep is disrupted and displaced due to mobile phone use”. - Candice Odgers
+The group considered most at risk of harm from digital technology is adolescents. 
+Results showed that spending only a few hours a day using digital devices was associated with slightly better well-being than not using them at all. 
+Existing solutions: In response to digital wellbeing concerns, Apple and Google are rolling out dashboards for their iOS and Android operating systems that let individuals: 
+Monitor the time they spend on devices. 
+See how often they pick up their phones
+How long they use different apps
+Number of notifications they receive from each app. 
+Set time limits 
+Enhanced features for hiding notifications, for example, at night.
+We should design software with digital well-being in mind. Technology is so pervasive in our daily lives that every negative impact caused by our design decision can and will impact the lives of millions. 
+
+
+SleepWell Project Brief
+Description: This is an application that adjusts screen brightness and colour based on the time of day to promote healthy sleep patterns. Optionally, we want users to not use their computer when it is their bedtime
+Goal: Help users sleep better and the solution is to 
+Requirements: Screen control access, time tracking.
+Intended Users: General computer users. 
+Stakeholders: Developers, users, health professionals.
+Goal: to design and develop a Java/JavaFX application for Digital Wellbeing 
+Functionalities/Requirements: 
+What it should have
+Changes recommended screen brightness depending on the time of day
+Timer starts when user clicks on a button and ends when user goes on their phoneTimer starts when user clicks on a button and ends when user goes on their phone
+Notification on when is bed time an 1 or 2 hours before (Bedtime reminder)
+Login system - signup
+
+
+Optional additions:
+Goal setting and progress tracking and time to wake up
+Let user chooses the limitation of the app
+Let user choose when to lock their app
+Monitoring and displaying the time usage on each applications
+All neighbor devices gets disconnected
+Space where users can share experiences or tips to improve their sleep
+
