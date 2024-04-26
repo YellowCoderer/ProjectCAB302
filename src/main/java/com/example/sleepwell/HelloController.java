@@ -11,8 +11,14 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.example.sleepwell.database.SqliteAccountDAO;
 
 public class HelloController implements Initializable {
+    //implements database
+    public HelloController() {
+        SqliteAccountDAO accountDao = new SqliteAccountDAO();
+    }
+
     @FXML
     private Label Menu, MenuClose;
 
