@@ -1,6 +1,7 @@
 package com.example.sleepwell.database;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -48,8 +49,20 @@ public class SqliteAccountDAO implements IAccountsDAO{
     }
 
     @Override
-    public void addAccount(Accounts accounts) {
+    public void addAccount(Accounts account) {
+        try {
+            Statement statement = connection.createStatement();
+            String insertQuery = "INSERT INTO accounts (firstName, lastName, email, password) VALUES ('" +
+                    account.getFirstName() + "', '" +
+                    account.getLastName() + "', '" +
+                    account.getEmail() + "', '" +
+                    account.getPassword() + "')";
+            statement.executeUpdate(insertQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void updateAccount(Accounts accounts) {

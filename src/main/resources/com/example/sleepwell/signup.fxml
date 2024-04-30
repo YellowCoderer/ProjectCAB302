@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="481.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sleepwell.SignupController">
+<AnchorPane prefHeight="567.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sleepwell.SignupController">
    <children>
       <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #1D70DA;">
          <children>
@@ -48,7 +48,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameTextField" layoutX="92.0" layoutY="242.0" prefHeight="25.0" prefWidth="336.0" promptText="Email">
+      <TextField fx:id="emailTextField" layoutX="92.0" layoutY="242.0" prefHeight="25.0" prefWidth="336.0" promptText="Email">
          <font>
             <Font size="13.0" />
          </font></TextField>
@@ -72,7 +72,7 @@
             <Font size="13.0" />
          </font>
       </PasswordField>
-      <Button fx:id="signupButton" layoutX="93.0" layoutY="414.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Signup" textFill="WHITE">
+      <Button fx:id="signupButton" layoutX="92.0" layoutY="427.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Signup" textFill="WHITE">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
@@ -87,7 +87,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="closeButton" layoutX="93.0" layoutY="446.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Close" textFill="WHITE">
+      <Button fx:id="closeButton" layoutX="93.0" layoutY="464.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Close" textFill="WHITE">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
