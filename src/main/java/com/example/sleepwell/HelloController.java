@@ -87,7 +87,21 @@ public class HelloController implements Initializable {
 
             });
         });
+        StatisticsButton.setOnMouseClicked(event -> {   //close the menu on button click
+            TranslateTransition slide = new TranslateTransition(Duration.seconds(0.4), LeftSlider);
+            slide.setToX(-123);
+            slide.play();
+        });
+        TimerButton.setOnMouseClicked(event -> {    //close the menu on button click
+            TranslateTransition slide = new TranslateTransition(Duration.seconds(0.4), LeftSlider);
+            slide.setToX(-123);
+            slide.play();
+        });
+        HomeButton.setOnMouseClicked(event -> {     //close the menu on button click
+            TranslateTransition slide = new TranslateTransition(Duration.seconds(0.4), LeftSlider);
+            slide.setToX(-123);
+            slide.play();
 
-
+        });
     }
 }
