@@ -1,4 +1,4 @@
-package com.example.sleepwell;
+package com.example.sleepwell.controller;
 
 
 import com.example.sleepwell.database.Accounts;
