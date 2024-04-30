@@ -17,7 +17,7 @@ public class SqliteAccountDAO implements IAccountsDAO{
     private void createTable() {
         try {
             Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS contacts ("
+            String query = "CREATE TABLE IF NOT EXISTS accounts ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "firstName VARCHAR NOT NULL,"
                     + "lastName VARCHAR NOT NULL,"
@@ -34,13 +34,13 @@ public class SqliteAccountDAO implements IAccountsDAO{
         try {
             // Clear before inserting
             Statement clearStatement = connection.createStatement();
-            String clearQuery = "DELETE FROM contacts";
+            String clearQuery = "DELETE FROM accounts";
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO contacts (firstName, lastName, phone, email) VALUES "
-                    + "('John', 'Doe', '0423423423', 'johndoe@example.com'),"
-                    + "('Jane', 'Doe', '0423423424', 'janedoe@example.com'),"
-                    + "('Jay', 'Doe', '0423423425', 'jaydoe@example.com')";
+            String insertQuery = "INSERT INTO accounts (firstName, lastName, password, email) VALUES "
+                    + "('John', 'Doe', 'password', 'johndoe@example.com'),"
+                    + "('Jane', 'Doe', 'password1', 'janedoe@example.com'),"
+                    + "('Jay', 'Doe', 'password2', 'jaydoe@example.com')";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();
