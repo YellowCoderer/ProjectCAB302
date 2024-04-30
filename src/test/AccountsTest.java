@@ -1,4 +1,4 @@
-package com.example.sleepwell.database;
+import com.example.sleepwell.database.Accounts;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

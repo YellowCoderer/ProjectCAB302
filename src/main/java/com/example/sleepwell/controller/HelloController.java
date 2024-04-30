@@ -1,25 +1,24 @@
-package com.example.sleepwell;
+package com.example.sleepwell.controller;
 
+import com.example.sleepwell.HelloApplication;
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.example.sleepwell.database.SqliteAccountDAO;
 
 public class HelloController implements Initializable {
-    //implements database
-    public HelloController() {
-        SqliteAccountDAO accountDao = new SqliteAccountDAO();
-    }
-
     @FXML
     private Label Menu, MenuClose;
 
@@ -27,10 +26,10 @@ public class HelloController implements Initializable {
     private ImageView Profile, ProfileClose;
 
     @FXML
-    private AnchorPane LeftSlider, RightSlider;
+    private JFXButton Signout;
 
     @FXML
-    private Button  StatisticsButton, HomeButton, TimerButton;
+    private AnchorPane LeftSlider, RightSlider;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,24 +83,15 @@ public class HelloController implements Initializable {
             slide.setOnFinished((ActionEvent e) -> {
                 Profile.setVisible(true);
                 ProfileClose.setVisible(false);
-
             });
         });
-        StatisticsButton.setOnMouseClicked(event -> {   //close the menu on button click
-            TranslateTransition slide = new TranslateTransition(Duration.seconds(0.4), LeftSlider);
-            slide.setToX(-123);
-            slide.play();
-        });
-        TimerButton.setOnMouseClicked(event -> {    //close the menu on button click
-            TranslateTransition slide = new TranslateTransition(Duration.seconds(0.4), LeftSlider);
-            slide.setToX(-123);
-            slide.play();
-        });
-        HomeButton.setOnMouseClicked(event -> {     //close the menu on button click
-            TranslateTransition slide = new TranslateTransition(Duration.seconds(0.4), LeftSlider);
-            slide.setToX(-123);
-            slide.play();
+    }
 
-        });
+    //Redirect user to login page
+    public void onSignOut(ActionEvent event) throws IOException {
+        Stage stage = (Stage) Signout.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("signup.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 520, 567);
+        stage.setScene(scene);
     }
 }

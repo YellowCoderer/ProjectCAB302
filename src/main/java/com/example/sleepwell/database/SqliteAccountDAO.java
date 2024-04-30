@@ -66,12 +66,10 @@ public class SqliteAccountDAO implements IAccountsDAO{
 
     @Override
     public void updateAccount(Accounts accounts) {
-
     }
 
     @Override
     public void deleteAccount(Accounts accounts) {
-
     }
 
     @Override
