@@ -7,11 +7,11 @@ public class Accounts {
     private String email;
     private String password;
 
-    public Accounts(String firstName, String lastName, String email, String phone) {
+    public Accounts(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = phone;
+        this.password = password;
     }
     /**receives and sets id*/
     public int getId() {

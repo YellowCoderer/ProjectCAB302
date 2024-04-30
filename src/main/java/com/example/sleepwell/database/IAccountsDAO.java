@@ -17,4 +17,6 @@ public interface IAccountsDAO {
      * Retrieves all account from the database.
      */
     public List<Accounts> getAllContacts();
+
+    public Accounts getAccountWithEmail(String email);
 }

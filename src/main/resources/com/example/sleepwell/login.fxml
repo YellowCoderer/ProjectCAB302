@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.sleepwell.LoginController"
+            prefHeight="567.0" prefWidth="520.0">
+    <children>
+        <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #1D70DA;">
+            <children>
+                <ImageView fx:id="sleepImageView" fitHeight="71.0" fitWidth="71.0" layoutX="67.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/enough-sleep.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="153.0" layoutY="28.0" text="Sleep Well - Login" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Bold" size="23.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Label layoutX="92.0" layoutY="115.0" text="Login">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="emailTextField" layoutX="92.0" layoutY="134.0" prefHeight="25.0" prefWidth="336.0" promptText="Email">
+            <font>
+                <Font size="13.0" />
+            </font></TextField>
+        <PasswordField fx:id="passwordTextField" layoutX="92.0" layoutY="169.0" prefHeight="25.0" prefWidth="336.0" promptText="Password">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </PasswordField>
+        <Button fx:id="loginButton" layoutX="92.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Login" textFill="WHITE">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Button>
+        <Label fx:id="loginMessageLabel" layoutX="92.0" layoutY="270.0" text="1">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Label>
+
+
+    </children>
+
+</AnchorPane>
