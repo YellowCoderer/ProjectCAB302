@@ -58,7 +58,7 @@ public class SignupController implements Initializable {
 
             //Redirect user to main page if successfully registered
             Stage stage = (Stage) signupMessageLabel.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Home
             stage.setScene(scene);
         }
@@ -80,6 +80,12 @@ public class SignupController implements Initializable {
         String lastname = lastnameTextField.getText();
         String email = emailTextField.getText();
         String password = setPasswordField.getText();
+
+        // Check if email contains '@' sign
+        if (!email.contains("@")) {
+            signupMessageLabel.setText("Invalid email address");
+            return; // Stop further execution
+        }
 
         // Create an Accounts object with the user data
         Accounts newAccount = new Accounts(firstname, lastname, email, password);

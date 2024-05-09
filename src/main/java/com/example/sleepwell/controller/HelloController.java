@@ -90,8 +90,8 @@ public class HelloController implements Initializable {
     //Redirect user to login page
     public void onSignOut(ActionEvent event) throws IOException {
         Stage stage = (Stage) Signout.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("signup.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 520, 567);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 520, 328);
         stage.setScene(scene);
     }
 }
