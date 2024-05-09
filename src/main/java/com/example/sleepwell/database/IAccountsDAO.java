@@ -5,7 +5,7 @@ public interface IAccountsDAO {
     public void addAccount(Accounts accounts);
 
     /**update the account*/
-    public void updateAccount(Accounts accounts);
+    public void updateAccount(Integer id, Accounts accounts);
 
     /** deletes the account*/
     public void deleteAccount(Accounts accounts);
@@ -13,10 +13,13 @@ public interface IAccountsDAO {
      * Retrieves a account from database using id
      */
     public Accounts getAccount(int id);
+
     /**
      * Retrieves all account from the database.
      */
     public List<Accounts> getAllContacts();
 
     public Accounts getAccountWithEmail(String email);
+
+    public Accounts getAccountWithUsername(String username);
 }
