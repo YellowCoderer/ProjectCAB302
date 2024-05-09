@@ -52,6 +52,26 @@ public class SignupController {
                 signupMessageLabel.setText("Passwords do not match!");
                 return; // Stop further execution
             }
+            // Check if email contains @ symbol
+            if (!email.contains("@")) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Invalid email address!");
+                return; // Stop further execution
+            }
+
+            // Check if username already exists
+            if (accountDao.getAccountWithUsername(username) != null) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Username already exists!");
+                return; // Stop further execution
+            }
+
+            // Check if email already exists
+            if (accountDao.getAccountWithEmail(email) != null) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Email already exists!");
+                return; // Stop further execution
+            }
         }
 
         // If all checks pass, register the user
@@ -61,7 +81,7 @@ public class SignupController {
         UserSession.getInstance(userAccount.getUsername(), userAccount.getId());
 
         //Redirect user to main page if successfully registered
-        MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
+        MenuBar.changeScene(event, "login.fxml", 520, 567);
     }
 
     public void registerUser() {
