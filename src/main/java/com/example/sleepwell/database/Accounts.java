@@ -1,4 +1,7 @@
 package com.example.sleepwell.database;
+
+import java.util.Date;
+
 /**values for the accounts*/
 public class Accounts {
     private int id;
@@ -6,6 +9,13 @@ public class Accounts {
     private String lastName;
     private String email;
     private String password;
+    /** values for timer page*/
+
+    /** values for detail page*/
+
+    /** values for setting page*/
+
+
 
     public Accounts(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -13,6 +23,7 @@ public class Accounts {
         this.email = email;
         this.password = password;
     }
+
     /**receives and sets id*/
     public int getId() {
         return id;
@@ -61,4 +72,6 @@ public class Accounts {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+
 }
