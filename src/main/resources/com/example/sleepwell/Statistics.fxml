@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sleepwell.controller.HelloController">
+    <children>
+        <BorderPane layoutX="64.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1D70DA;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label fx:id="MenuClose" layoutX="11.0" layoutY="13.0" text="Menu">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/Active_Menu.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="Menu" layoutX="11.0" layoutY="13.0" text="Menu" textFill="WHITE">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/Menu.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="243.0" layoutY="12.0" text="SleepWell" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="23.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="ProfileClose" fitHeight="30.0" fitWidth="30.0" layoutX="557.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/Active_Account.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="Profile" fitHeight="30.0" fitWidth="30.0" layoutX="557.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/Account.png" />
+                            </image>
+                        </ImageView>
+                    </children></AnchorPane>
+            </top>
+            <left>
+                <AnchorPane fx:id="LeftSlider" prefHeight="350.0" prefWidth="123.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                            <children>
+                                <JFXButton alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Home">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9">
+                                            <image>
+                                                <Image url="@images/Home_Icon.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton fx:id= "Statistics" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" onAction="#onStatistics" text="Statistics">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@images/Stats_Icon.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton fx:id="Timer" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onTimer" prefHeight="38.0" prefWidth="170.0" text="Timer">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@images/Timer_Icon.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </JFXButton>
+                            </children></VBox>
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane fx:id="RightSlider" prefHeight="350.0" prefWidth="117.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox prefHeight="300.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                            <children>
+                                <JFXButton alignment="BASELINE_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Settings">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@images/Settings.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Get Help">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9">
+                                            <image>
+                                                <Image url="@images/Help.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton fx:id="Signout" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSignOut" prefHeight="38.0" prefWidth="170.0" text="Signout">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9">
+                                            <image>
+                                                <Image url="@images/Sign_Out.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </JFXButton>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </children>
+</AnchorPane>
