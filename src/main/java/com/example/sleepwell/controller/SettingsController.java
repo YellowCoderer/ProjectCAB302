@@ -78,4 +78,8 @@ public class SettingsController {
     public void onSettings(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "settings.fxml", 600, 400);
     }
+
+    public void onHome(ActionEvent event) throws IOException {
+        MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
+    }
 }
