@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,9 @@ public class HelloController implements Initializable {
 
     @FXML
     private JFXButton Signout;
+
+    @FXML
+    private JFXButton timerButton;
 
     @FXML
     private AnchorPane LeftSlider, RightSlider;
@@ -94,4 +98,18 @@ public class HelloController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 520, 567);
         stage.setScene(scene);
     }
+
+    //Open Timer Page
+    public void openTimer(ActionEvent event) throws IOException {
+        Stage stage = (Stage) timerButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("timer.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Home
+        stage.setScene(scene);
+    }
 }
+
+
+
+
+
+
