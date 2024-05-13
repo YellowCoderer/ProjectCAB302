@@ -2,7 +2,10 @@ package com.example.sleepwell.database;
 
 import java.util.Date;
 
-/**values for the accounts*/
+/**
+ * A simple model class representing an accounts with a username, first name, last name, email, phone number and password.
+ * */
+
 public class Accounts {
     private int id;
     private String username;
@@ -17,7 +20,15 @@ public class Accounts {
 
     /** values for setting page*/
 
-
+    /**
+     * Constructs a new Contact with the specified first name, last name, email, and phone number.
+     * @param username The username of the contact
+     * @param firstName The first name of the contact
+     * @param lastName The last name of the contact
+     * @param email The email of the contact
+     * @param phone The phone number of the contact
+     * @param password The password of the contact
+     */
 
     public Accounts(String username, String firstName, String lastName, String email, String phone, String password) {
         this.username = username;
