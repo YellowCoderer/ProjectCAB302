@@ -9,20 +9,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
-
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class SignupController {
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
-
-    //implements database
-    public SignupController() {
-    }
 
     @FXML
     private Label signupMessageLabel;
@@ -91,9 +84,10 @@ public class SignupController {
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
         String password = passwordField.getText();
+        String image = "@images/Brightness.png";
 
         // Create an Accounts object with the user data
-        Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, password);
+        Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, password, image);
 
         // Add the new account to the database
         accountDao.addAccount(newAccount);

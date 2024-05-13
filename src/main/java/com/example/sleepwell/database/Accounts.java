@@ -8,14 +8,16 @@ public class Accounts {
     private String email;
     private String phone;
     private String password;
+    private String image;
 
-    public Accounts(String username, String firstName, String lastName, String email, String phone, String password) {
+    public Accounts(String username, String firstName, String lastName, String email, String phone, String password, String image) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.image = image;
     }
 
     /**receives and sets id*/
@@ -81,4 +83,9 @@ public class Accounts {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+    /**receives and sets phone number*/
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 }

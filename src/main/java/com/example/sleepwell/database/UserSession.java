@@ -9,7 +9,6 @@ public final class UserSession {
     private UserSession(String userName, Integer userId) {
         this.userName = userName;
         this.userId = userId;
-        System.out.println("UserSession created with userName=" + userName + " and userId=" + userId);
     }
 
     public static UserSession getInstance(String userName, Integer userId) {
@@ -50,5 +49,16 @@ public final class UserSession {
 
     public Integer userId() {
         return userId;
+    }
+
+    //Brightness Preferences
+    public static double brightness = 0.0; // Default brightness
+
+    public static void setBrightness(double newBrightness) {
+        brightness = newBrightness;
+    }
+
+    public static double getBrightness() {
+        return brightness;
     }
 }

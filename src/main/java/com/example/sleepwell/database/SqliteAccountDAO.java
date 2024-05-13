@@ -85,6 +85,17 @@ public class SqliteAccountDAO implements IAccountsDAO{
         }
     }
 
+    public void updateImage(Integer id, String image) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE accounts SET image = ? WHERE id = ?");
+            statement.setString(1, image);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void deleteAccount(Accounts accounts) {
     }
@@ -105,8 +116,9 @@ public class SqliteAccountDAO implements IAccountsDAO{
                 String email = resultSet.getString("email");
                 String phone = resultSet.getString("phone");
                 String password = resultSet.getString("password");
+                String image =  resultSet.getString("image");
 
-                Accounts account = new Accounts(username, firstName, lastName, email, phone, password);
+                Accounts account = new Accounts(username, firstName, lastName, email, phone, password, image);
                 account.setId(userid); // Set the ID fetched from the database
                 return account;
             }
@@ -132,8 +144,9 @@ public class SqliteAccountDAO implements IAccountsDAO{
                 String emailFromDB = resultSet.getString("email");
                 String phone = resultSet.getString("email");
                 String password = resultSet.getString("password");
+                String image = resultSet.getString("image");
 
-                Accounts account = new Accounts(username, firstName, lastName, emailFromDB, phone, password);
+                Accounts account = new Accounts(username, firstName, lastName, emailFromDB, phone, password, image);
                 account.setId(id); // Set the ID fetched from the database
                 return account;
             }
@@ -159,8 +172,9 @@ public class SqliteAccountDAO implements IAccountsDAO{
                 String email = resultSet.getString("email");
                 String phone = resultSet.getString("email");
                 String password = resultSet.getString("password");
+                String image = resultSet.getString("image");
 
-                Accounts account = new Accounts(usernameFromDB, firstName, lastName, email, phone, password);
+                Accounts account = new Accounts(usernameFromDB, firstName, lastName, email, phone, password, image);
                 account.setId(id); // Set the ID fetched from the database
                 return account;
             }

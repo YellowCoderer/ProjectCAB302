@@ -12,7 +12,7 @@ public class AccountsTest {  // Naming for a test class
     @BeforeEach
     public void setUp() {
         // Instantiate the Accounts object
-        account = new Accounts("John", "Doe", "john.doe@example.com", "password123");
+        //account = new Accounts("John", "Doe", "john.doe@example.com", "password123");
     }
 
     @Test
