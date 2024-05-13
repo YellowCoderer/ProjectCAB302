@@ -65,6 +65,11 @@ public class SqliteAccountDAO implements IAccountsDAO{
         }
     }
 
+    @Override
+    public void updateAccount(Integer id, Accounts accounts) {
+
+    }
+
 
     @Override
     public void updateAccount(Accounts accounts) {
@@ -104,7 +109,10 @@ public class SqliteAccountDAO implements IAccountsDAO{
         return null; // Return null if no account is found with the given email
     }
 
-
+    @Override
+    public Accounts getAccountWithUsername(String username) {
+        return null;
+    }
 
 
     @Override

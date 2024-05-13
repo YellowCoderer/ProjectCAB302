@@ -39,6 +39,9 @@ public class Accounts {
         this.password = password;
     }
 
+    public Accounts(String firstName, String lastName, String emailFromDB, String password) {
+    }
+
     /**receives and sets id*/
     public int getId() {
         return id;
