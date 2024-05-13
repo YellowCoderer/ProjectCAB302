@@ -2,12 +2,17 @@ package com.example.sleepwell.database;
 
 import java.util.Date;
 
-/**values for the accounts*/
+/**
+ * A simple model class representing an accounts with a username, first name, last name, email, phone number and password.
+ * */
+
 public class Accounts {
     private int id;
+    private String username;
     private String firstName;
     private String lastName;
     private String email;
+    private String phone;
     private String password;
     /** values for timer page*/
 
@@ -15,13 +20,26 @@ public class Accounts {
 
     /** values for setting page*/
 
+    /**
+     * Constructs a new Contact with the specified first name, last name, email, and phone number.
+     * @param username The username of the contact
+     * @param firstName The first name of the contact
+     * @param lastName The last name of the contact
+     * @param email The email of the contact
+     * @param phone The phone number of the contact
+     * @param password The password of the contact
+     */
 
-
-    public Accounts(String firstName, String lastName, String email, String password) {
+    public Accounts(String username, String firstName, String lastName, String email, String phone, String password) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phone = phone;
         this.password = password;
+    }
+
+    public Accounts(String firstName, String lastName, String emailFromDB, String password) {
     }
 
     /**receives and sets id*/
@@ -31,6 +49,15 @@ public class Accounts {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**receives and sets username name*/
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String firstName) {
+        this.username = username;
     }
 
     /**receives and sets first name*/
@@ -60,6 +87,11 @@ public class Accounts {
         this.email = email;
     }
 
+    /**receives and sets phone number*/
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone; }
+
     /**receives and sets password*/
     public String getPassword() {
         return password;
@@ -68,6 +100,7 @@ public class Accounts {
     public void setPassword(String password) {
         this.password = password;
     }
+
     /**receiving full name*/
     public String getFullName() {
         return firstName + " " + lastName;

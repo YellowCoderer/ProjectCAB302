@@ -32,35 +32,6 @@ public class SqliteAccountDAO implements IAccountsDAO{
             e.printStackTrace();
         }
     }
-
-    private void createTimerTable() {
-        try {
-            Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS timer ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "firstName VARCHAR NOT NULL,"
-                    + "lastName VARCHAR NOT NULL,"
-                    + "password VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL"
-                    + ")";
-            statement.execute(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void createSettingTable() {
-        try {
-            Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS setting ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "brightness FLOAT NOT NULL"
-                    + ")";
-            statement.execute(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     /**creates a sample table of the database*/
     private void insertSampleData() {
         try {
@@ -92,6 +63,11 @@ public class SqliteAccountDAO implements IAccountsDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void updateAccount(Integer id, Accounts accounts) {
+
     }
 
 
@@ -132,10 +108,15 @@ public class SqliteAccountDAO implements IAccountsDAO{
         }
         return null; // Return null if no account is found with the given email
     }
+
     @Override
-    public List<Accounts> getAllContacts() {
+    public Accounts getAccountWithUsername(String username) {
         return null;
     }
 
 
+    @Override
+    public List<Accounts> getAllContacts() {
+        return null;
+    }
 }
