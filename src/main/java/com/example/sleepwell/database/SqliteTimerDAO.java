@@ -16,7 +16,7 @@ public class SqliteTimerDAO implements ITimerDAO{
     private void createTable() {
         try {
             Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS accounts ("
+            String query = "CREATE TABLE IF NOT EXISTS timers ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "timer FLOAT NOT NULL,"
                     + "date DATE NOT NULL,"
@@ -29,8 +29,19 @@ public class SqliteTimerDAO implements ITimerDAO{
     }
     @Override
     public void addTimer(Timer timer) {
-
+        try {
+            Statement statement = connection.createStatement();
+            String insertQuery = "INSERT INTO timers (id, timer, date, activity) VALUES ('" +
+                    timer.getTimerId() + "', '" +
+                    timer.getTimer() + "', '" +
+                    timer.getDate() + "', '" +
+                    timer.getActivity() + "')";
+            statement.executeUpdate(insertQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void updateTimer(Timer timer) {
@@ -43,7 +54,7 @@ public class SqliteTimerDAO implements ITimerDAO{
     }
 
     @Override
-    public Detail getTimer(int timerid) {
+    public Timer getTimer(int timerid) {
         return null;
     }
 
