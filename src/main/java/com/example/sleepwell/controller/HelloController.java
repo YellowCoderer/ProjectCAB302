@@ -1,8 +1,9 @@
 package com.example.sleepwell.controller;
 
-import com.example.sleepwell.MenuBar;
+import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.database.SqliteAccountDAO;
-import com.example.sleepwell.database.UserSession;
+import com.example.sleepwell.initialization.UserPreferences;
+import com.example.sleepwell.initialization.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,16 +27,17 @@ public class HelloController implements Initializable {
 
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
+    private String userImage = accountDao.getAccount(session.getUserId()).getImage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MenuBar.moveSlider(leftSlider, rightSlider, menu, menuClose, profile, profileClose);
 
         double chosenbrightness = UserSession.getBrightness();
-        MenuBar.adjustBrightness(parentPane, chosenbrightness);
+        UserPreferences.adjustBrightness(parentPane, chosenbrightness);
 
-        MenuBar.setAvatarImage(accountDao.getAccount(session.userId()).getImage(), profile);
-        MenuBar.setAvatarImage(accountDao.getAccount(session.userId()).getImage(), profileClose);
+        UserPreferences.setAvatarImage(userImage, profile);
+        UserPreferences.setAvatarImage(userImage, profileClose);
     }
 
     //Redirect user to login page

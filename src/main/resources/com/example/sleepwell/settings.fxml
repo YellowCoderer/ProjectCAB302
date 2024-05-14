@@ -157,7 +157,7 @@
                         <Font name="Arial Bold" size="13.0" />
                      </font>
                   </JFXButton>
-                  <Slider fx:id="brightnessSlider" blockIncrement="0.25" layoutX="73.0" layoutY="279.0" majorTickUnit="0.25" max="1.0" min="-1.0" prefHeight="19.0" prefWidth="233.0" showTickMarks="true" snapToTicks="true" />
+                  <Slider fx:id="brightnessSlider" blockIncrement="0.1" layoutX="73.0" layoutY="279.0" majorTickUnit="0.5" max="0.0" min="-1.0" minorTickCount="4" prefHeight="19.0" prefWidth="233.0" showTickMarks="true" snapToTicks="true" />
                   <Label layoutX="101.0" layoutY="246.0" text="Screen Brightness:">
                      <font>
                         <Font name="Arial Bold" size="18.0" />

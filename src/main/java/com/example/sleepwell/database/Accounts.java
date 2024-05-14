@@ -10,14 +10,13 @@ public class Accounts {
     private String password;
     private String image;
 
-    public Accounts(String username, String firstName, String lastName, String email, String phone, String password, String image) {
+    public Accounts(String username, String firstName, String lastName, String email, String phone, String password) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.image = image;
     }
 
     /**receives and sets id*/
@@ -34,7 +33,7 @@ public class Accounts {
         return username;
     }
 
-    public void setUsername(String firstName) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

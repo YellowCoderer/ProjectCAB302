@@ -10,4 +10,6 @@ module com.example.sleepwell {
     opens com.example.sleepwell.database to javafx.fxml;
     exports com.example.sleepwell.controller;
     opens com.example.sleepwell.controller to javafx.fxml;
+    exports com.example.sleepwell.initialization;
+    opens com.example.sleepwell.initialization to javafx.fxml;
 }

@@ -1,9 +1,10 @@
 package com.example.sleepwell.controller;
 
-import com.example.sleepwell.MenuBar;
+import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.database.Accounts;
 import com.example.sleepwell.database.SqliteAccountDAO;
-import com.example.sleepwell.database.UserSession;
+import com.example.sleepwell.initialization.UserPreferences;
+import com.example.sleepwell.initialization.UserSession;
 import javafx.event.ActionEvent;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -11,9 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -22,7 +21,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +47,7 @@ public class SettingsController {
 
     public void initialize() {
         // Load user data once from the database
-        Accounts userAccount = accountDao.getAccount(session.userId());
+        Accounts userAccount = accountDao.getAccount(session.getUserId());
 
         // Setting text fields with user data
         firstNameTextField.setText(userAccount.getFirstName());
@@ -59,9 +57,9 @@ public class SettingsController {
         phoneTextField.setText(userAccount.getPhone());
 
         // Setting user image in account and profile icons
-        MenuBar.setAvatarImage(userAccount.getImage(), accountImage);
-        MenuBar.setAvatarImage(userAccount.getImage(), profile);
-        MenuBar.setAvatarImage(userAccount.getImage(), profileClose);
+        UserPreferences.setAvatarImage(userAccount.getImage(), accountImage);
+        UserPreferences.setAvatarImage(userAccount.getImage(), profile);
+        UserPreferences.setAvatarImage(userAccount.getImage(), profileClose);
 
         // Initialise UI components related to menu navigation
         MenuBar.moveSlider(leftSlider, rightSlider, menu, menuClose, profile, profileClose);
@@ -69,7 +67,7 @@ public class SettingsController {
         // Initialise brightness settings from session
         double chosenBrightness = UserSession.getBrightness();
         brightnessSlider.setValue(chosenBrightness);
-        MenuBar.adjustBrightness(parentPane, chosenBrightness);
+        UserPreferences.adjustBrightness(parentPane, chosenBrightness);
     }
 
     @FXML
@@ -80,19 +78,20 @@ public class SettingsController {
         String lastname = lastNameTextField.getText();
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
-        Accounts userAccount = accountDao.getAccount(session.userId());
+        Accounts userAccount = accountDao.getAccount(session.getUserId());
 
         // Validate input before updating profile
         if (username.isEmpty() || email.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || phone.isEmpty()) {
             errorMessage.setText("*There is a missing field!*");
         } else {
             // Update the account in the database if all fields are filled
-            Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, userAccount.getPassword(), userAccount.getImage());
+            Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, userAccount.getPassword());
             accountDao.updateAccount(userAccount.getId(), newAccount);
 
             // Check if an image has been selected and copy it
             if (selectedImageFile != null) {
                 try {
+                    // Code below taken from: jewelsea. (2022). How to save a file uploaded by FileChooser to a directory in your project [Answer to forum post]. Stack Overflow. https://stackoverflow.com/questions/72294934/how-to-save-a-file-uploaded-by-filechooser-to-a-directory-in-your-project
                     Path destinationPath = Paths.get("src/main/resources/com/example/sleepwell/images/", selectedImageFile.getName());
                     Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                     accountDao.updateImage(userAccount.getId(), selectedImageFile.getName());
@@ -110,6 +109,7 @@ public class SettingsController {
     public void onAccountImage(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        // Code below taken from: TechGuru. (2021). In-depth JavaFX Tutorial [Video]. YouTube. https://www.youtube.com/watch?v=KEF_MxUAkOk
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG image", "*.png"),
@@ -130,7 +130,7 @@ public class SettingsController {
 
     public void onChangeBrightness(ActionEvent event) {
         double chosenBrightness = brightnessSlider.getValue();
-        MenuBar.adjustBrightness(parentPane, chosenBrightness);
+        UserPreferences.adjustBrightness(parentPane, chosenBrightness);
         UserSession.setBrightness(chosenBrightness);
     }
 

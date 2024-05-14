@@ -1,15 +1,14 @@
 package com.example.sleepwell.controller;
-import com.example.sleepwell.MenuBar;
+import com.example.sleepwell.initialization.MenuBar;
 
 import com.example.sleepwell.database.Accounts;
 import com.example.sleepwell.database.SqliteAccountDAO;
-import com.example.sleepwell.database.UserSession;
+import com.example.sleepwell.initialization.UserSession;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
@@ -67,11 +66,10 @@ public class SignupController {
             }
         }
 
-        // If all checks pass, register the user
-        registerUser();
+        registerUser(); // If all checks pass, register the user
 
         Accounts userAccount = accountDao.getAccountWithEmail(email);
-        UserSession.getInstance(userAccount.getUsername(), userAccount.getId());
+        UserSession.initialize(userAccount.getUsername(), userAccount.getId());
 
         //Redirect user to main page if successfully registered
         MenuBar.changeScene(event, "login.fxml", 520, 567);
@@ -84,10 +82,9 @@ public class SignupController {
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
         String password = passwordField.getText();
-        String image = "@images/Brightness.png";
 
         // Create an Accounts object with the user data
-        Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, password, image);
+        Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, password);
 
         // Add the new account to the database
         accountDao.addAccount(newAccount);
