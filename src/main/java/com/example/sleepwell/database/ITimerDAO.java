@@ -9,7 +9,7 @@ public interface ITimerDAO {
 
     public void deleteTimer(Timer timer);
 
-    public Detail getTimer(int timerid);
+    public Timer getTimer(int timerid);
 
     public List<Setting> getAllTimer();
 }
