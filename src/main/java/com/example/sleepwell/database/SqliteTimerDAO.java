@@ -56,6 +56,11 @@ public class SqliteTimerDAO implements ITimerDAO{
     @Override
     public Timer getTimer(int timerid) {
 
+        return null;
+    }
+
+    @Override
+    public List<Timer> getAllTimer(int timerid) {
         String query = "SELECT * FROM timers WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -69,16 +74,11 @@ public class SqliteTimerDAO implements ITimerDAO{
                 String activity = resultSet.getString("activity");
 
                 Timer timer1 = new Timer(timer, date, activity);
-                return timer1;
+                return (List<Timer>) timer1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    @Override
-    public List<Setting> getAllTimer() {
         return null;
     }
 }

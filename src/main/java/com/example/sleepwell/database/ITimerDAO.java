@@ -11,5 +11,7 @@ public interface ITimerDAO {
 
     public Timer getTimer(int timerid);
 
-    public List<Setting> getAllTimer();
+    public List<Timer> getAllTimer(int timerid);
+
+
 }
