@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Signup Control page to add function that use in the page such as add detail of the users to register to use the application.
+ */
 public class SignupController {
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
 
@@ -31,6 +34,10 @@ public class SignupController {
     @FXML
     private JFXTextField usernameTextField, firstnameTextField, lastnameTextField, emailTextField, phoneTextField;
 
+    /**
+     * Fill in empty space and check for multiple error such as empty fields, passwords match, email contain '@' symbol
+     * and username/email already exists after click signup button
+     */
     @FXML
     public void signupButtonOnAction(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
@@ -84,6 +91,9 @@ public class SignupController {
         MenuBar.changeScene(event, "login.fxml", 520, 567);
     }
 
+    /**
+     * Add new account to database to use in login page
+     */
     public void registerUser() {
         String username = usernameTextField.getText();
         String firstname = firstnameTextField.getText();
@@ -102,6 +112,9 @@ public class SignupController {
         signupMessageLabel.setText("User has been signed up successfully");
     }
 
+    /**
+     * Click on "Have an Account?" hyperlink to go back to login page
+     */
     public void onLogin(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "login.fxml", 520, 567);
     }
