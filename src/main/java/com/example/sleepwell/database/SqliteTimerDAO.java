@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 
 public class SqliteTimerDAO implements ITimerDAO{
@@ -54,6 +55,25 @@ public class SqliteTimerDAO implements ITimerDAO{
 
     @Override
     public Timer getTimer(int timerid) {
+
+        String query = "SELECT * FROM timers WHERE id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, timerid);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                Float timer = resultSet.getFloat("timer");
+                Date date = resultSet.getDate("date");
+                String activity = resultSet.getString("activity");
+
+                Timer timer1 = new Timer(timer, date, activity);
+                return timer1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
