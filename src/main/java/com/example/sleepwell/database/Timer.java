@@ -2,11 +2,11 @@ package com.example.sleepwell.database;
 
 public class Timer {
     private int id;
-    private float timer;
+    private long timer;
     private long date;
     private String activity;
 
-    public Timer(int id, float timer, long date, String activity) {
+    public Timer(int id, long timer, long date, String activity) {
         this.timer = timer;
         this.date = date;
         this.activity = activity;
@@ -28,11 +28,11 @@ public class Timer {
     }
 
     /**receives and sets Timer*/
-    public float getTimer() {
+    public long getTimer() {
         return timer;
     }
 
-    public void setTimer(float timer) {
+    public void setTimer(long timer) {
         this.timer = timer;
     }
 

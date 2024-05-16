@@ -67,7 +67,7 @@ public class TimerController extends HelloController {
         SqliteTimerDAO timerDao = new SqliteTimerDAO();
         UserSession session = UserSession.getInstance();
         int id = session.userId();
-        float timer = lastnameTextField.getFloat();
+        long timer = lastnameTextField.getLong();
         long date = System.currentTimeMillis();
         String activity = "sleep";
 
