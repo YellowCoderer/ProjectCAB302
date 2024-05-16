@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import java.util.List;
 
 public class SqliteTimerDAO implements ITimerDAO{
@@ -70,10 +69,10 @@ public class SqliteTimerDAO implements ITimerDAO{
             if (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 Float timer = resultSet.getFloat("timer");
-                Date date = resultSet.getDate("date");
+                long date = resultSet.getLong("date");
                 String activity = resultSet.getString("activity");
 
-                Timer timer1 = new Timer(timer, date, activity);
+                Timer timer1 = new Timer(id, timer, date, activity);
                 return (List<Timer>) timer1;
             }
         } catch (SQLException e) {

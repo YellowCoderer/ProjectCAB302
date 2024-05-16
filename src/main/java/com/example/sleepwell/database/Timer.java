@@ -1,14 +1,12 @@
 package com.example.sleepwell.database;
 
-import java.util.Date;
-
 public class Timer {
     private int id;
     private float timer;
-    private Date date;
+    private long date;
     private String activity;
 
-    public Timer(float timer, Date date, String activity) {
+    public Timer(int id, float timer, long date, String activity) {
         this.timer = timer;
         this.date = date;
         this.activity = activity;
@@ -39,11 +37,11 @@ public class Timer {
     }
 
     /**receives and sets Date*/
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
