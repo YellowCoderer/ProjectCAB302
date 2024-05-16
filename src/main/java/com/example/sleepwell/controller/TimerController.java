@@ -68,7 +68,7 @@ public class TimerController extends HelloController {
         int id = session.userId();
         float timer = lastnameTextField.getFloat();
         long date = System.currentTimeMillis();
-        String activity = "empty";
+        String activity = "sleep";
 
         // Create an Timer object with the user data
         Timer newTimer = new Timer(id, timer, date, activity);
