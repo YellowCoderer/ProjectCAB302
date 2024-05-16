@@ -1,6 +1,8 @@
 package com.example.sleepwell.controller;
 
 import com.example.sleepwell.HelloApplication;
+import com.example.sleepwell.database.SqliteAccountDAO;
+import com.example.sleepwell.database.SqliteTimerDAO;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
@@ -13,6 +15,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TimerController extends HelloController {
+    public TimerController() {
+        SqliteTimerDAO timerDao = new SqliteTimerDAO();
+    }
     @FXML
     private Label stopwatchLabel;
     @FXML
