@@ -55,6 +55,7 @@ public class TimerController extends HelloController {
 
     public void stopStopwatch() {
         timer.stop();
+        addingTimer();
     }
 
     public void resetStopwatch() {
