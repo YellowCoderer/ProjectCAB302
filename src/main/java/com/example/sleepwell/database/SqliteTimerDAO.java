@@ -1,5 +1,4 @@
 package com.example.sleepwell.database;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,7 +55,7 @@ public class SqliteTimerDAO implements ITimerDAO {
     }
 
     @Override
-    public Timer getTimer(int id) {
+    public Timer getTimer(int timerid) {
 
         return null;
     }

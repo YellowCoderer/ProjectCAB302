@@ -1,23 +1,15 @@
 package com.example.sleepwell.controller;
-import com.example.sleepwell.controller.HelloController;
+import com.example.sleepwell.MenuBar;
 
-import com.example.sleepwell.HelloApplication;
 import com.example.sleepwell.database.Accounts;
 import com.example.sleepwell.database.SqliteAccountDAO;
-import javafx.application.Platform;
+import com.example.sleepwell.database.UserSession;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 
 import java.io.File;
@@ -25,68 +17,105 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class SignupController implements Initializable {
+/**
+ * Signup Control page to add function that use in the page such as add detail of the users to register to use the application.
+ */
+public class SignupController {
+    SqliteAccountDAO accountDao = new SqliteAccountDAO();
 
     //implements database
     public SignupController() {
-        SqliteAccountDAO accountDao = new SqliteAccountDAO();
     }
 
     @FXML
-    private Label signupMessageLabel, confirmPasswordLabel;
+    private Label signupMessageLabel;
     @FXML
-    private Button closeButton;
+    private JFXPasswordField passwordField, confirmPasswordField;
     @FXML
-    private PasswordField setPasswordField, confirmPasswordField;
-    @FXML
-    private ImageView sleepImageView;
-    @FXML
-    private TextField firstnameTextField, lastnameTextField, emailTextField;
+    private JFXTextField usernameTextField, firstnameTextField, lastnameTextField, emailTextField, phoneTextField;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        File sleepFile = new File("src/main/resources/images/enough-sleep.png");
-        Image sleepImage = new Image(sleepFile.toURI().toString());
-        sleepImageView.setImage(sleepImage);
-    }
-
+    /**
+     * Fill in empty space and check for multiple error such as empty fields, passwords match, email contain '@' symbol
+     * and username/email already exists after click signup button
+     */
     @FXML
     public void signupButtonOnAction(ActionEvent event) throws IOException {
-        if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
-            registerUser();
-            confirmPasswordLabel.setText("");
-
-            //Redirect user to main page if successfully registered
-            Stage stage = (Stage) signupMessageLabel.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Home
-            stage.setScene(scene);
-        }
-        else {
-            confirmPasswordLabel.setText("Password does not match");
-        }
-    }
-
-    public void closeButtonOnAction(ActionEvent event){
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-        Platform.exit();
-    }
-
-    public void registerUser() {
-        SqliteAccountDAO accountDao = new SqliteAccountDAO();
-
+        String username = usernameTextField.getText();
         String firstname = firstnameTextField.getText();
         String lastname = lastnameTextField.getText();
         String email = emailTextField.getText();
-        String password = setPasswordField.getText();
+        String phone = phoneTextField.getText();
+        String password = passwordField.getText();
+
+        // Check for empty fields first
+        if (username.isEmpty() || email.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || phone.isEmpty()) {
+            signupMessageLabel.setTextFill(Color.RED);
+            signupMessageLabel.setText("There is an empty field!");
+            return; // Stop further execution
+        } else {
+            // Check if the passwords match
+            if (!passwordField.getText().equals(confirmPasswordField.getText())) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Passwords do not match!");
+                return; // Stop further execution
+            }
+            // Check if email contains @ symbol
+            if (!email.contains("@")) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Invalid email address!");
+                return; // Stop further execution
+            }
+
+            // Check if username already exists
+            if (accountDao.getAccountWithUsername(username) != null) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Username already exists!");
+                return; // Stop further execution
+            }
+
+            // Check if email already exists
+            if (accountDao.getAccountWithEmail(email) != null) {
+                signupMessageLabel.setTextFill(Color.RED);
+                signupMessageLabel.setText("Email already exists!");
+                return; // Stop further execution
+            }
+        }
+
+        // If all checks pass, register the user
+        registerUser();
+
+        Accounts userAccount = accountDao.getAccountWithEmail(email);
+        UserSession.getInstance(userAccount.getUsername(), userAccount.getId());
+
+        //Redirect user to main page if successfully registered
+        MenuBar.changeScene(event, "login.fxml", 520, 567);
+    }
+
+    /**
+     * Add new account to database to use in login page
+     */
+    public void registerUser() {
+        String username = usernameTextField.getText();
+        String firstname = firstnameTextField.getText();
+        String lastname = lastnameTextField.getText();
+        String email = emailTextField.getText();
+        String phone = phoneTextField.getText();
+        String password = passwordField.getText();
 
         // Create an Accounts object with the user data
-        Accounts newAccount = new Accounts(firstname, lastname, email, password);
+        Accounts newAccount = new Accounts(username, firstname, lastname, email, phone, password);
 
         // Add the new account to the database
         accountDao.addAccount(newAccount);
 
+        signupMessageLabel.setTextFill(Color.BLACK);
         signupMessageLabel.setText("User has been signed up successfully");
+    }
+
+    /**
+     * Click on "Have an Account?" hyperlink to go back to login page
+     */
+    public void onLogin(ActionEvent event) throws IOException {
+        MenuBar.changeScene(event, "login.fxml", 520, 567);
     }
 }
