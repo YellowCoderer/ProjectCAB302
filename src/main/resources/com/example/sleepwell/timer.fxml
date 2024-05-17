@@ -83,7 +83,7 @@
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Statistics">
+                                <JFXButton fx:id="Statistics" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#openStat" prefHeight="38.0" prefWidth="170.0" text="Statistics">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>

@@ -1,6 +1,7 @@
 package com.example.sleepwell.controller;
 
 import com.example.sleepwell.HelloApplication;
+import com.example.sleepwell.MenuBar;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
@@ -8,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,10 +20,20 @@ public class TimerController extends HelloController {
     private Label stopwatchLabel;
     @FXML
     private JFXButton homeButton;
+    @FXML
+    private JFXButton Statistics;
+
     //Home linked with Timer Page
     public void openHome(ActionEvent event) throws IOException {
         Stage stage = (Stage) homeButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Home
+        stage.setScene(scene);
+    }
+
+    public void openStat(ActionEvent event) throws IOException {
+        Stage stage = (Stage) Statistics.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Statistics.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Home
         stage.setScene(scene);
     }
