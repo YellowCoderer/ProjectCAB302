@@ -9,9 +9,9 @@ public interface ITimerDAO {
 
     public void deleteTimer(Timer timer);
 
-    public Timer getTimer(int timerid);
+    public Timer getTimer(int id);
 
-    public List<Timer> getAllTimer(int timerid);
+    public List<Timer> getAllTimer(int id);
 
 
 }

@@ -1,4 +1,5 @@
 package com.example.sleepwell.database;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,9 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class SqliteTimerDAO implements ITimerDAO{
+public class SqliteTimerDAO implements ITimerDAO {
     private Connection connection = SqliteConnection.getInstance();
-    public SqliteTimerDAO(){
+
+    public SqliteTimerDAO() {
         createTable();
     }
 
@@ -16,9 +18,9 @@ public class SqliteTimerDAO implements ITimerDAO{
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS timers ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "timer LONG NOT NULL,"
-                    + "date LONG NOT NULL,"
+                    + "userid INTEGER NOT NULL,"
+                    + "timer STRING NOT NULL,"
+                    + "date STRING NOT NULL,"
                     + "activity STRING NOT NULL"
                     + ")";
             statement.execute(query);
@@ -26,11 +28,12 @@ public class SqliteTimerDAO implements ITimerDAO{
             e.printStackTrace();
         }
     }
+
     @Override
     public void addTimer(Timer timer) {
         try {
             Statement statement = connection.createStatement();
-            String insertQuery = "INSERT INTO timers (id, timer, date, activity) VALUES ('" +
+            String insertQuery = "INSERT INTO timers (userid, timer, date, activity) VALUES ('" +
                     timer.getTimerId() + "', '" +
                     timer.getTimer() + "', '" +
                     timer.getDate() + "', '" +
@@ -60,16 +63,16 @@ public class SqliteTimerDAO implements ITimerDAO{
 
     @Override
     public List<Timer> getAllTimer(int timerid) {
-        String query = "SELECT * FROM timers WHERE id = ?";
+        String query = "SELECT * FROM timers WHERE userid = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, timerid);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                long timer = resultSet.getLong("timer");
-                long date = resultSet.getLong("date");
+                int id = resultSet.getInt("userid");
+                String timer = resultSet.getString("timer");
+                String date = resultSet.getString("date");
                 String activity = resultSet.getString("activity");
 
                 Timer timer1 = new Timer(id, timer, date, activity);

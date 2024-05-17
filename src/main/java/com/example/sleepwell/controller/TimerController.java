@@ -14,7 +14,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
+import static java.lang.Long.parseLong;
 
 
 public class TimerController extends HelloController {
@@ -36,6 +39,7 @@ public class TimerController extends HelloController {
     }
 
     private long startTime;
+    private long getTimer;
 
     private AnimationTimer timer = new AnimationTimer() {
         @Override
@@ -65,10 +69,11 @@ public class TimerController extends HelloController {
 
     public void addingTimer() {
         SqliteTimerDAO timerDao = new SqliteTimerDAO();
-        UserSession session = UserSession.getInstance();
-        int id = session.userId();
-        long timer = lastnameTextField.getLong();
-        long date = System.currentTimeMillis();
+        ZoneId zonedId = ZoneId.of( "Australia/Sydney" );
+        LocalDate today = LocalDate.now( zonedId );
+        int id = 1;
+        String timer = stopwatchLabel.getText();
+        String date = String.valueOf(today);
         String activity = "sleep";
 
         // Create an Timer object with the user data
