@@ -4,11 +4,12 @@ import java.util.Date;
 
 public class Timer {
     private int id;
-    private float timer;
-    private Date date;
+    private String timer;
+    private String date;
     private String activity;
 
-    public Timer(float timer, Date date, String activity) {
+    public Timer(int id, String timer, String date, String activity) {
+        this.id = id;
         this.timer = timer;
         this.date = date;
         this.activity = activity;
@@ -30,20 +31,20 @@ public class Timer {
     }
 
     /**receives and sets Timer*/
-    public float getTimer() {
+    public String getTimer() {
         return timer;
     }
 
-    public void setTimer(float timer) {
+    public void setTimer(String timer) {
         this.timer = timer;
     }
 
     /**receives and sets Date*/
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
