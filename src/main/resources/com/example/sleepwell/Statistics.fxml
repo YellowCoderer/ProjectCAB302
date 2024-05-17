@@ -193,7 +193,7 @@
                       <RowConstraints maxHeight="51.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ListView prefHeight="200.0" prefWidth="180.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="goalListView" prefHeight="200.0" prefWidth="180.0" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="181.0" text="Goals" textAlignment="CENTER">
                            <font>
                               <Font size="19.0" />
@@ -203,8 +203,8 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Add Goal" />
-                        <TextField promptText="New Goal" />
-                        <Button mnemonicParsing="false" text="New Goal" />
+                        <TextField fx:id="goalTextField" promptText="New Goal" />
+                        <Button mnemonicParsing="false" text="New Goal"  />
                         <Button mnemonicParsing="false" text="Delete Goal" />
                      </children>
                   </VBox>
