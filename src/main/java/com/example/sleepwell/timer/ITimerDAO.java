@@ -1,4 +1,4 @@
-package com.example.sleepwell.database;
+package com.example.sleepwell.timer;
 
 import java.util.List;
 

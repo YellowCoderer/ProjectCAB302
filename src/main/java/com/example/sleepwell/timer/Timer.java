@@ -1,6 +1,4 @@
-package com.example.sleepwell.database;
-
-import java.util.Date;
+package com.example.sleepwell.timer;
 
 public class Timer {
     private int id;
