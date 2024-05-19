@@ -8,6 +8,7 @@ public class Accounts {
     private String email;
     private String phone;
     private String password;
+    private String image;
 
     public Accounts(String username, String firstName, String lastName, String email, String phone, String password) {
         this.username = username;
@@ -32,7 +33,7 @@ public class Accounts {
         return username;
     }
 
-    public void setUsername(String firstName) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -81,4 +82,9 @@ public class Accounts {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+    /**receives and sets phone number*/
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 }

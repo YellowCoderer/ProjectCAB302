@@ -144,4 +144,12 @@ public class SettingsController {
     public void onHome(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
     }
+
+    public void onTimer(ActionEvent event) throws IOException {
+        MenuBar.changeScene(event, "timer.fxml", 600, 400);
+    }
+
+    public void onStatistics(ActionEvent event) throws IOException {
+        MenuBar.changeScene(event, "statistics.fxml", 600, 400);
+    }
 }

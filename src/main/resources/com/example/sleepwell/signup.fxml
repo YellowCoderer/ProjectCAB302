@@ -68,9 +68,9 @@
             <Font size="11.0" />
          </font>
       </JFXTextField>
-      <Button fx:id="signupButton" layoutX="100.0" layoutY="516.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Signup" textFill="WHITE">
+      <Button fx:id="signupButton" layoutX="100.0" layoutY="516.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="34.0" prefWidth="336.0" style="-fx-background-color: #1D70DA;" text="Signup" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="16.0" />
          </font>
       </Button>
       <Label fx:id="signupMessageLabel" alignment="CENTER" layoutX="-1.0" layoutY="490.0" prefHeight="19.0" prefWidth="520.0" textFill="#1d70da" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0">

@@ -50,10 +50,12 @@ public class HelloController implements Initializable {
     public void onSettings(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "settings.fxml", 600, 400);
     }
+
     public void onTimer(ActionEvent event) throws IOException{
         MenuBar.changeScene(event, "timer.fxml", 600, 400);
     }
+
     public void onStatistics(ActionEvent event) throws IOException {
-        MenuBar.changeScene(event, "Statistics.fxml", 600, 400);
+        MenuBar.changeScene(event, "statistics.fxml", 600, 400);
     }
 }
