@@ -1,10 +1,9 @@
 package com.example.sleepwell.controller;
 
-import com.example.sleepwell.HelloApplication;
-import com.example.sleepwell.MenuBar;
+import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.database.Accounts;
 import com.example.sleepwell.database.SqliteAccountDAO;
-import com.example.sleepwell.database.UserSession;
+import com.example.sleepwell.initialization.UserSession;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -40,7 +39,7 @@ public class LoginController {
             if (password.equals(activeAccount.getPassword())) {
                 loginMessageLabel.setText("Log in Success!");
                 // Create a new user session
-                UserSession.getInstance(activeAccount.getUsername(), activeAccount.getId());
+                UserSession.initialize(activeAccount.getUsername(), activeAccount.getId());
 
                 //Redirect user to main page if successfully logged in
                 MenuBar.changeScene(event, "hello-view.fxml", 600, 400);

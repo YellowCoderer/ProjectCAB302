@@ -7,8 +7,6 @@ public interface IAccountsDAO {
     /**update the account*/
     public void updateAccount(Integer id, Accounts accounts);
 
-    void updateAccount(Accounts accounts);
-
     /** deletes the account*/
     public void deleteAccount(Accounts accounts);
     /**
