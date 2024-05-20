@@ -21,7 +21,8 @@ public class SqliteAccountDAO implements IAccountsDAO{
                     + "lastName VARCHAR NOT NULL,"
                     + "password VARCHAR NOT NULL,"
                     + "email VARCHAR NOT NULL,"
-                    + "phone VARCHAR NOT NULL"
+                    + "phone VARCHAR NOT NULL,"
+                    + "image VARCHAR DEFAULT 'Active_Account.png'"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
