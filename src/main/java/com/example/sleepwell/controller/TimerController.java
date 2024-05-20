@@ -4,6 +4,8 @@ import com.example.sleepwell.database.SqliteAccountDAO;
 import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.initialization.UserPreferences;
 import com.example.sleepwell.initialization.UserSession;
+import com.example.sleepwell.timer.SqliteTimerDAO;
+import com.example.sleepwell.timer.Timer;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class TimerController {
     @FXML
@@ -58,6 +62,7 @@ public class TimerController {
 
     public void onStop() {
         timer.stop();
+        addingTimer();
     }
 
     public void onReset() {
@@ -87,5 +92,23 @@ public class TimerController {
     public void editSched(ActionEvent event) throws IOException {
         //still needs code
     }
+    public void addingTimer() {
+        SqliteTimerDAO timerDao = new SqliteTimerDAO();
+        ZoneId zonedId = ZoneId.of( "Australia/Sydney" );
+        LocalDate today = LocalDate.now( zonedId );
+        UserSession session = UserSession.getInstance();
+        int id = session.getUserId();
+        String timer = stopwatchLabel.getText();
+        String date = String.valueOf(today);
+        String activity = "sleep";
+
+        // Create an Timer object with the user data
+        Timer newTimer = new Timer(id, timer, date, activity);
+
+        // Add the new timer to the database
+        timerDao.addTimer(newTimer);
+
+    }
+
 }
 
