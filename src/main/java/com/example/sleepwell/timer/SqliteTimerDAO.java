@@ -1,4 +1,6 @@
-package com.example.sleepwell.database;
+package com.example.sleepwell.timer;
+import com.example.sleepwell.database.SqliteConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

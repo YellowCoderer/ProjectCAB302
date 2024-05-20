@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,16 +15,17 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sleepwell.controller.TimerController">
+<AnchorPane fx:id="parentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sleepwell.controller.TimerController">
     <children>
         <BorderPane layoutX="64.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1D70DA;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label fx:id="MenuClose" layoutX="11.0" layoutY="13.0" text="Menu">
+                        <Label fx:id="menuClose" layoutX="11.0" layoutY="13.0" text="Menu">
                             <graphic>
                                 <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -37,7 +37,7 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Label fx:id="Menu" layoutX="11.0" layoutY="13.0" text="Menu" textFill="WHITE">
+                        <Label fx:id="menu" layoutX="11.0" layoutY="13.0" text="Menu" textFill="WHITE">
                             <graphic>
                                 <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -49,29 +49,28 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Label layoutX="243.0" layoutY="12.0" text="SleepWell" textFill="WHITE">
-                            <font>
-                                <Font name="Arial Bold" size="23.0" />
-                            </font>
-                        </Label>
-                        <ImageView fx:id="ProfileClose" fitHeight="30.0" fitWidth="30.0" layoutX="557.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/Active_Account.png" />
-                            </image>
+                  <Circle fx:id="profileClose" fill="DODGERBLUE" layoutX="572.0" layoutY="26.0" radius="16.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Circle fx:id="profile" fill="DODGERBLUE" layoutX="572.0" layoutY="26.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="228.0" layoutY="8.0" text="SleepWell" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="23.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="sleepImageView" fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Logo.png" />
+                           </image>
                         </ImageView>
-                        <ImageView fx:id="Profile" fitHeight="30.0" fitWidth="30.0" layoutX="557.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/Account.png" />
-                            </image>
-                        </ImageView>
+                     </graphic>
+                  </Label>
                     </children></AnchorPane>
             </top>
             <left>
-                <AnchorPane fx:id="LeftSlider" prefHeight="350.0" prefWidth="123.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+                <AnchorPane fx:id="leftSlider" prefHeight="350.0" prefWidth="123.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                             <children>
-                                <JFXButton fx:id="homeButton" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#openHome" prefHeight="38.0" prefWidth="170.0" text="Home">
+                                <JFXButton fx:id="home" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHome" prefHeight="38.0" prefWidth="170.0" text="Home">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -83,7 +82,7 @@
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="Statistics" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#openStat" prefHeight="38.0" prefWidth="170.0" text="Statistics">
+                                <JFXButton fx:id="statistics" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onStatistics" prefHeight="38.0" prefWidth="170.0" text="Statistics">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -112,11 +111,11 @@
                 </AnchorPane>
             </left>
             <right>
-                <AnchorPane fx:id="RightSlider" prefHeight="350.0" prefWidth="117.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+                <AnchorPane fx:id="rightSlider" prefHeight="350.0" prefWidth="117.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
                     <children>
                         <VBox prefHeight="300.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                             <children>
-                                <JFXButton alignment="BASELINE_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Settings">
+                                <JFXButton fx:id="settings" alignment="BASELINE_CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSettings" prefHeight="38.0" prefWidth="170.0" text="Settings">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -140,7 +139,7 @@
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton fx:id="Signout" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSignOut" prefHeight="38.0" prefWidth="170.0" text="Signout">
+                                <JFXButton fx:id="signout" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSignOut" prefHeight="38.0" prefWidth="170.0" text="Signout">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -158,83 +157,151 @@
                 </AnchorPane>
             </right>
          <center>
-            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="273.5999877929688" minHeight="10.0" prefHeight="249.59998779296876" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="118.19998779296873" minHeight="0.0" prefHeight="100.00001220703126" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-
-                   <GridPane>
+                  <Text layoutX="72.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timer">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="stopwatchLabel" alignment="CENTER" layoutX="27.0" layoutY="35.0" prefHeight="26.0" prefWidth="123.0" promptText="00:00:00">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="pickList" editable="true" layoutX="12.0" layoutY="209.0" prefHeight="18.0" prefWidth="150.0" promptText="Choose Activity" />
+                  <JFXButton layoutX="11.0" layoutY="241.0" onAction="#onStart" prefHeight="19.0" prefWidth="151.0" style="-fx-background-color: #5a99e9;" text="START" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="11.0" layoutY="272.0" onAction="#onStop" prefHeight="19.0" prefWidth="151.0" style="-fx-background-color: #1D70DA;" text="STOP" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="11.0" layoutY="303.0" onAction="#onReset" prefHeight="19.0" prefWidth="151.0" style="-fx-background-color: #144d96;" text="RESET" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <GridPane layoutX="168.0" layoutY="176.0" prefHeight="155.0" prefWidth="179.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.4000244140625" minWidth="0.0" prefWidth="0.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="156.00002746582032" minHeight="10.0" prefHeight="151.20003967285157" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="76.79999389648438" minHeight="10.0" prefHeight="40.39996032714842" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ProgressBar prefHeight="19.0" prefWidth="169.0" progress="0.0" GridPane.valignment="BOTTOM">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </ProgressBar>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sleep Progress" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
-                        <Label fx:id="stopwatchLabel" prefHeight="115.0" prefWidth="180.0" text="00:00:00" GridPane.rowIndex="1">
+                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="93.0" style="-fx-background-color: #a3a3a3;" text="Date" textFill="WHITE">
                            <font>
-                              <Font name="Bodoni MT Black" size="38.0" />
+                              <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="pickList" prefWidth="150.0" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets left="7.0" />
-                           </GridPane.margin>
-                        </ComboBox>
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="94.0" style="-fx-background-color: #a3a3a3;" text="Sleep Time" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="93.0" style="-fx-background-color: #ffffff;" text="Monday" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #ebebeb;" text="Thursday" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="93.0" style="-fx-background-color: #ebebeb;" text="Tuesday" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #ffffff;" text="Wednesday" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #ffffff;" text="Friday" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="23.0" prefWidth="93.0" style="-fx-background-color: #ebebeb;" text="Saturday" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #ffffff;" text="Sunday" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="monField" alignment="CENTER" prefHeight="0.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="tueField" alignment="CENTER" prefHeight="0.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ebebeb; -fx-border-color: #ebebeb;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="wedField" alignment="CENTER" prefHeight="0.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="thuField" alignment="CENTER" prefHeight="0.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ebebeb; -fx-border-color: #ebebeb;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="friField" alignment="CENTER" prefHeight="0.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="satField" alignment="CENTER" prefHeight="0.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ebebeb; -fx-border-color: #ebebeb;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="sunField" alignment="CENTER" prefHeight="17.0" prefWidth="92.0" promptText="Prompt" style="-fx-background-color: #ffffff; -fx-border-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </GridPane>
-                   <TableView fx:id="tableView" prefHeight="245.0" prefWidth="52.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
-                       <columns>
-                           <TableColumn fx:id="dateColumn" prefWidth="52.80003356933594" text="Date" />
-                           <TableColumn fx:id="activityColumn" minWidth="2.4000244140625" prefWidth="63.99998474121094" text="Activity" />
-                           <TableColumn fx:id="timeColumn" prefWidth="61.60003662109375" text="Time" />
-                       </columns>
-                   </TableView>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#startStopwatch" prefHeight="15.0" prefWidth="139.0" text="Start">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="15.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#stopStopwatch" prefHeight="27.0" prefWidth="139.0" text="Stop">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="15.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#resetStopwatch" prefHeight="17.0" prefWidth="58.0" styleClass="sidebarItem" stylesheets="@stylesheet.css" text="Reset">
-                           <VBox.margin>
-                              <Insets left="55.0" top="5.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </VBox>
+                  <Text layoutX="168.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <JFXTreeTableView fx:id="actHistory" layoutX="167.0" layoutY="35.0" prefHeight="121.0" prefWidth="180.0" />
+                  <Text layoutX="168.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <Hyperlink layoutX="328.0" layoutY="159.0" onAction="#editSched" text="edit" textFill="#2c81f2">
+                     <font>
+                        <Font size="8.0" />
+                     </font>
+                  </Hyperlink>
+                  <ProgressIndicator layoutX="11.0" layoutY="63.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="145.0" prefWidth="151.0" progress="0.0" />
                </children>
-            </GridPane>
+            </AnchorPane>
          </center>
         </BorderPane>
     </children>

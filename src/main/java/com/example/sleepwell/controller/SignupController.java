@@ -1,9 +1,9 @@
 package com.example.sleepwell.controller;
-import com.example.sleepwell.MenuBar;
+import com.example.sleepwell.initialization.MenuBar;
 
 import com.example.sleepwell.database.Accounts;
 import com.example.sleepwell.database.SqliteAccountDAO;
-import com.example.sleepwell.database.UserSession;
+import com.example.sleepwell.initialization.UserSession;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -11,21 +11,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
-
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Signup Control page to add function that use in the page such as add detail of the users to register to use the application.
  */
 public class SignupController {
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
-
-    //implements database
-    public SignupController() {
-    }
 
     @FXML
     private Label signupMessageLabel;
@@ -81,11 +73,10 @@ public class SignupController {
             }
         }
 
-        // If all checks pass, register the user
-        registerUser();
+        registerUser(); // If all checks pass, register the user
 
         Accounts userAccount = accountDao.getAccountWithEmail(email);
-        UserSession.getInstance(userAccount.getUsername(), userAccount.getId());
+        UserSession.initialize(userAccount.getUsername(), userAccount.getId());
 
         //Redirect user to main page if successfully registered
         MenuBar.changeScene(event, "login.fxml", 520, 567);
