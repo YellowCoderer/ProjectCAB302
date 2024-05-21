@@ -16,7 +16,7 @@ public class SqliteSleepScheduleDAO implements ISleepScheduleDAO{
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS schedule ("
-                    + "userid INTEGER NOT NULL,"
+                    + "userid INTEGER PRIMARY KEY,"
                     + "monday STRING NOT NULL,"
                     + "tuesday STRING NOT NULL,"
                     + "wednesday STRING NOT NULL,"
@@ -31,18 +31,18 @@ public class SqliteSleepScheduleDAO implements ISleepScheduleDAO{
         }
     }
     @Override
-    public void addSleepSchedule(SleepSchedule sleepschedule) {
+    public void addSleepSchedule(Integer id, SleepSchedule sleepschedule) {
         try {
             Statement statement = connection.createStatement();
-            String insertQuery = "INSERT INTO schedule (userid, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ('" +
-                    sleepschedule.getSleepScheduleId() + "', '" +
-                    sleepschedule.getMonday() + "', '" +
-                    sleepschedule.getTuesday() + "', '" +
-                    sleepschedule.getWednesday() + "', '" +
-                    sleepschedule.getThursday() + "', '" +
-                    sleepschedule.getFriday() + "', '" +
-                    sleepschedule.getSaturday() + "', '" +
-                    sleepschedule.getSunday() + "')";
+            String insertQuery = "INSERT IGNORE INTO schedule (userid, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ('" +
+                    "Empty" + "', '" +
+                    "Empty" + "', '" +
+                    "Empty" + "', '" +
+                    "Empty" + "', '" +
+                    "Empty" + "', '" +
+                    "Empty" + "', '" +
+                    "Empty" + "', '" +
+                    "Empty" + "')";
             statement.executeUpdate(insertQuery);
         } catch (SQLException e) {
             e.printStackTrace();
