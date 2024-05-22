@@ -31,18 +31,18 @@ public class SqliteSleepScheduleDAO implements ISleepScheduleDAO{
         }
     }
     @Override
-    public void addSleepSchedule(Integer id, SleepSchedule sleepschedule) {
+    public void addSleepSchedule(SleepSchedule sleepschedule) {
         try {
             Statement statement = connection.createStatement();
             String insertQuery = "INSERT IGNORE INTO schedule (userid, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ('" +
-                    "Empty" + "', '" +
-                    "Empty" + "', '" +
-                    "Empty" + "', '" +
-                    "Empty" + "', '" +
-                    "Empty" + "', '" +
-                    "Empty" + "', '" +
-                    "Empty" + "', '" +
-                    "Empty" + "')";
+                    sleepschedule.getSleepScheduleId() + "', '" +
+                    sleepschedule.getMonday() + "', '" +
+                    sleepschedule.getTuesday() + "', '" +
+                    sleepschedule.getWednesday() + "', '" +
+                    sleepschedule.getThursday() + "', '" +
+                    sleepschedule.getFriday() + "', '" +
+                    sleepschedule.getSaturday() + "', '" +
+                    sleepschedule.getSunday() + "')";
             statement.executeUpdate(insertQuery);
         } catch (SQLException e) {
             e.printStackTrace();

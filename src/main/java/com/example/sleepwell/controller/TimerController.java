@@ -4,6 +4,8 @@ import com.example.sleepwell.database.SqliteAccountDAO;
 import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.initialization.UserPreferences;
 import com.example.sleepwell.initialization.UserSession;
+import com.example.sleepwell.timer.SleepSchedule;
+import com.example.sleepwell.timer.SqliteSleepScheduleDAO;
 import com.example.sleepwell.timer.SqliteTimerDAO;
 import com.example.sleepwell.timer.Timer;
 import javafx.animation.AnimationTimer;
@@ -79,6 +81,12 @@ public class TimerController {
 
     public void onHome(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
+        SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
+        UserSession session = UserSession.getInstance();
+        Integer id = session.getUserId();
+        SleepSchedule newsleepschedule = new SleepSchedule(id, "empty","empty","empty","empty","empty","empty","empty");
+        sleepScheduleDAO.addSleepSchedule(newsleepschedule);
+
     }
 
     public void onSettings(ActionEvent event) throws IOException {
@@ -90,7 +98,20 @@ public class TimerController {
     }
 
     public void editSched(ActionEvent event) throws IOException {
-        //still needs code
+        SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
+        UserSession session = UserSession.getInstance();
+        Integer id = session.getUserId();
+        String monday = something.setText();
+        String tuesday = something.setText();
+        String wednesday = something.setText();
+        String thursday = something.setText();
+        String friday = something.setText();
+        String saturday = something.setText();
+        String sunday = something.setText();
+        SleepSchedule newsleepschedule = new SleepSchedule(monday, tuesday, wednesday, thursday, friday, saturday, sunday)
+
+        sleepScheduleDAO.updateSleepSchedule(id, newsleepschedule);
+
     }
     public void addingTimer() {
         SqliteTimerDAO timerDao = new SqliteTimerDAO();
@@ -109,6 +130,7 @@ public class TimerController {
         timerDao.addTimer(newTimer);
 
     }
+
 
 }
 
