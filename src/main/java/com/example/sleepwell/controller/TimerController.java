@@ -89,6 +89,13 @@ public class TimerController {
 
     }
 
+    public void addingHistory() {
+        SqliteTimerDAO timerDao = new SqliteTimerDAO();
+        UserSession session = UserSession.getInstance();
+        Integer id = session.getUserId();
+        timerDao.getAllTimer(id);
+    }
+
     public void onSettings(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "settings.fxml", 600, 400);
     }
