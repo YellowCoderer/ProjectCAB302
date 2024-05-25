@@ -146,9 +146,7 @@ public class TimerController {
 
 
         SleepSchedule newSleepSchedule = new SleepSchedule(id, monday, tuesday, wednesday, thursday, friday, saturday, sunday);
-
-
-        sleepScheduleDAO.updateSleepSchedule(id, newSleepSchedule);
+        sleepScheduleDAO.updateSleepSchedule(newSleepSchedule);
     }
     public void addingTimer() {
         SqliteTimerDAO timerDao = new SqliteTimerDAO();

@@ -49,18 +49,28 @@ public class SqliteSleepScheduleDAO implements ISleepScheduleDAO{
         }
     }
 
-    @Override
-    public void updateSleepSchedule(Integer id, SleepSchedule sleepschedule) {
+//    @Override
+//    public void updateSleepSchedule(SleepSchedule sleepschedule) {
+//        try {
+//            PreparedStatement statement = connection.prepareStatement("UPDATE schedule SET monday = ?, tuesday = ?, wednesday = ?, thursday = ?, friday = ?, saturday = ?, sunday = ?, WHERE userid = ?");
+//            statement.setInt(6, sleepschedule.getSleepScheduleId());
+//            statement.setString(1, sleepschedule.getMonday());
+//            statement.setString(2, sleepschedule.getTuesday());
+//            statement.setString(3, sleepschedule.getWednesday());
+//            statement.setString(4, sleepschedule.getThursday());
+//            statement.setString(5, sleepschedule.getFriday());
+//            statement.setString(5, sleepschedule.getSaturday());
+//            statement.setString(5, sleepschedule.getSunday());
+//
+//            statement.executeUpdate();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+@Override
+    public void updateSleepSchedule(SleepSchedule sleepschedule) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE schedule SET monday = ?, tuesday = ?, wednesday = ?, thursday = ?, friday = ?, saturday = ?, sunday = ?, WHERE userid = ?");
-            statement.setString(1, sleepschedule.getMonday());
-            statement.setString(2, sleepschedule.getTuesday());
-            statement.setString(3, sleepschedule.getWednesday());
-            statement.setString(4, sleepschedule.getThursday());
-            statement.setString(5, sleepschedule.getFriday());
-            statement.setString(5, sleepschedule.getSaturday());
-            statement.setString(5, sleepschedule.getSunday());
-            statement.setInt(6, id);
+            PreparedStatement statement = connection.prepareStatement("UPDATE schedule SET monday = '"+sleepschedule.getMonday()+"', tuesday = '"+sleepschedule.getTuesday()+"', wednesday = '"+sleepschedule.getWednesday()+"', thursday = '"+sleepschedule.getThursday()+"', friday = '"+sleepschedule.getFriday()+"', saturday = '"+sleepschedule.getSaturday()+"', sunday = '"+sleepschedule.getSunday()+"' WHERE userid = "+sleepschedule.getSleepScheduleId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
