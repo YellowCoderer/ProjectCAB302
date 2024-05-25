@@ -1,49 +1,73 @@
 package com.example.sleepwell.timer;
 
-public class Timer {
-    private int id;
-    private String timer;
-    private String date;
-    private String activity;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-    public Timer(int id, String timer, String date, String activity) {
-        this.id = id;
-        this.timer = timer;
-        this.date = date;
-        this.activity = activity;
+public class Timer extends RecursiveTreeObject<Timer> {
+    private String  userName;
+    private StringProperty timer;
+    private StringProperty date;
+    private StringProperty activity;
+
+    public Timer(String userName, String timer, String date, String activity) {
+        this.userName = userName;
+        this.timer = new SimpleStringProperty(timer);
+        this.date = new SimpleStringProperty(date);
+        this.activity = new SimpleStringProperty(activity);
     }
+
+    // Constructor without the userName
+    public Timer(String timer, String date, String activity) {
+        this("", timer, date, activity); // Call the main constructor with an empty username
+    }
+
     /**receives and sets id*/
-    public int getTimerId() {
-        return id;
+    public String getTimerId() {
+        return userName;
     }
 
-    public void setTimerId(int id) {
-        this.id = id;
+    public void setTimerId(String userName) {
+        this.userName = userName;
+    }
+
+    // Activity accessors
+    public StringProperty activityProperty() { // Renamed for JavaFX conventions
+        return activity;
     }
 
     /**receives and sets Activity*/
-    public String getActivity() {return activity;}
+    public StringProperty getActivity() {return activity;}
 
-    public void setActivity(String activity) {
+    public void setActivity(StringProperty activity) {
         this.activity = activity;
     }
 
-    /**receives and sets Timer*/
-    public String getTimer() {
+    // Timer accessors
+    public StringProperty timerProperty() { // Renamed for JavaFX conventions
         return timer;
     }
 
-    public void setTimer(String timer) {
+    /**receives and sets Timer*/
+    public StringProperty getTimer() {
+        return timer;
+    }
+
+    public void setTimer(StringProperty timer) {
         this.timer = timer;
     }
 
-    /**receives and sets Date*/
-    public String getDate() {
+    // Date accessors
+    public StringProperty dateProperty() { // Renamed for JavaFX conventions
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    /**receives and sets Date*/
+    public StringProperty getDate() {
+        return date;
     }
 
+    public void setDate(StringProperty date) {
+        this.date = date;
+    }
 }

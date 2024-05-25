@@ -1,7 +1,7 @@
 package com.example.sleepwell.timer;
 
 public class SleepSchedule {
-    private int id;
+    private String userName;
     private String Monday;
     private String Tuesday;
     private String Wednesday;
@@ -9,8 +9,9 @@ public class SleepSchedule {
     private String Friday;
     private String Saturday;
     private String Sunday;
-    public SleepSchedule(int id, String Monday, String Tuesday, String Wednesday, String Thursday, String Friday, String Saturday, String Sunday) {
-        this.id = id;
+
+    public SleepSchedule(String userName, String Monday, String Tuesday, String Wednesday, String Thursday, String Friday, String Saturday, String Sunday) {
+        this.userName = userName;
         this.Monday = Monday;
         this.Tuesday = Tuesday;
         this.Wednesday = Wednesday;
@@ -20,21 +21,29 @@ public class SleepSchedule {
         this.Sunday = Sunday;
     }
 
-    public int getSleepScheduleId() {
-        return id;
+    public String getScheduleUsername() {
+        return userName;
     }
 
-    public void setSleepScheduleId(int id) {
-        this.id = id;
+    public void setScheduleUsername(String userName) {
+        this.userName = userName;
     }
 
-    public String getMonday() {return Monday;}
+    public String getMonday() {
+        if (Monday == null) {
+            return "18:00";
+        }
+        return Monday;
+    }
 
     public void setMonday(String Monday) {
         this.Monday = Monday;
     }
 
     public String getTuesday() {
+        if (Tuesday == null) {
+            return "18:00";
+        }
         return Tuesday;
     }
 
@@ -43,6 +52,9 @@ public class SleepSchedule {
     }
 
     public String getWednesday() {
+        if (Wednesday == null) {
+            return "18:00";
+        }
         return Wednesday;
     }
 
@@ -51,6 +63,9 @@ public class SleepSchedule {
     }
 
     public String getThursday() {
+        if (Thursday == null) {
+            return "18:00";
+        }
         return Thursday;
     }
 
@@ -59,6 +74,9 @@ public class SleepSchedule {
     }
 
     public String getFriday() {
+        if (Friday == null) {
+            return "18:00";
+        }
         return Friday;
     }
 
@@ -67,6 +85,9 @@ public class SleepSchedule {
     }
 
     public String getSaturday() {
+        if (Saturday == null) {
+            return "18:00";
+        }
         return Saturday;
     }
 
@@ -75,6 +96,9 @@ public class SleepSchedule {
     }
 
     public String getSunday() {
+        if (Sunday == null) {
+            return "18:00";
+        }
         return Sunday;
     }
 

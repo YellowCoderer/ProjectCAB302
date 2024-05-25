@@ -1,5 +1,7 @@
 package com.example.sleepwell.timer;
 import com.example.sleepwell.database.SqliteConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,37 +34,28 @@ public class SqliteTimerDAO implements ITimerDAO {
 
     @Override
     public void addTimer(Timer timer) {
-        try {
-            Statement statement = connection.createStatement();
-            String insertQuery = "INSERT INTO timers (userid, timer, date, activity) VALUES ('" +
-                    timer.getTimerId() + "', '" +
-                    timer.getTimer() + "', '" +
-                    timer.getDate() + "', '" +
-                    timer.getActivity() + "')";
-            statement.executeUpdate(insertQuery);
+        String insertQuery = "INSERT INTO timers (userid, timer, date, activity) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+            // Use the get() method of StringProperty to extract the string value
+            statement.setString(1, timer.getTimerId());
+            statement.setString(2, timer.getTimer().get());  // Get actual string value
+            statement.setString(3, timer.getDate().get());   // Get actual string value
+            statement.setString(4, timer.getActivity().get()); // Get actual string value
+
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-
     @Override
-    public void updateTimer(Timer timer) {
-
-    }
-
-    @Override
-    public void deleteTimer(Timer timer) {
-
-    }
-
-    @Override
-    public Timer getTimer(int timerid) {
+    public Timer getTimer(String userName) {
 
         String query = "SELECT * FROM timers WHERE userid = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, timerid);
+            statement.setString(1, userName);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
@@ -71,7 +64,7 @@ public class SqliteTimerDAO implements ITimerDAO {
                 String date = resultSet.getString("date");
                 String activity = resultSet.getString("activity");
 
-                Timer timer1 = new Timer(id, timer, date, activity);
+                Timer timer1 = new Timer(userName, timer, date, activity);
                 return (Timer) timer1;
             }
         } catch (SQLException e) {
@@ -81,26 +74,25 @@ public class SqliteTimerDAO implements ITimerDAO {
     }
 
 
-    @Override
-    public List<Timer> getAllTimer(int timerid) {
+    public ObservableList<Timer> getAllTimers(String userName) {
         String query = "SELECT * FROM timers WHERE userid = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, timerid);
+        ObservableList<Timer> timers = FXCollections.observableArrayList();
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, userName);
             ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
-                int id = resultSet.getInt("userid");
+            while (resultSet.next()) {
                 String timer = resultSet.getString("timer");
                 String date = resultSet.getString("date");
                 String activity = resultSet.getString("activity");
 
-                Timer timer1 = new Timer(id, timer, date, activity);
-                return (List<Timer>) timer1;
+                Timer timerObj = new Timer(userName, timer, date, activity);
+                timers.add(timerObj);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return timers;
     }
 }
