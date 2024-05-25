@@ -15,10 +15,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.List;
 
 public class TimerController {
     @FXML
@@ -43,6 +46,9 @@ public class TimerController {
     private TextField satField;
     @FXML
     private TextField sunField;
+    @FXML
+    private ComboBox<String> pickList;
+
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
     private String userImage = accountDao.getAccount(session.getUserId()).getImage();
@@ -55,8 +61,15 @@ public class TimerController {
 
         UserPreferences.setAvatarImage(userImage, profile);
         UserPreferences.setAvatarImage(userImage, profileClose);
-    }
 
+        setupActivityBox();//initialise activity box
+
+    }
+    private void setupActivityBox() {
+        List<String> options = Arrays.asList("sleep", "workout", "reading");
+        pickList.getItems().addAll(options);
+        pickList.getSelectionModel().selectFirst();
+    }
     private long startTime;
 
     private AnimationTimer timer = new AnimationTimer() {
