@@ -27,13 +27,13 @@ public class HelloController implements Initializable {
 
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
-    private String userImage = accountDao.getAccount(session.getUserId()).getImage();
+    private final String userImage = accountDao.getAccount(session.getUserId()).getImage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MenuBar.moveSlider(leftSlider, rightSlider, menu, menuClose, profile, profileClose);
 
-        double chosenbrightness = UserSession.getBrightness();
+        double chosenbrightness = UserSession.brightnessAdjustAutoVal();
         UserPreferences.adjustBrightness(parentPane, chosenbrightness);
 
         UserPreferences.setAvatarImage(userImage, profile);

@@ -31,7 +31,7 @@ public class TimerController {
     public void initialize() {
         MenuBar.moveSlider(leftSlider, rightSlider, menu, menuClose, profile, profileClose);
 
-        double chosenbrightness = UserSession.getBrightness();
+        double chosenbrightness = UserSession.brightnessAdjustAutoVal();
         UserPreferences.adjustBrightness(parentPane, chosenbrightness);
 
         UserPreferences.setAvatarImage(userImage, profile);

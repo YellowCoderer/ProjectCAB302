@@ -65,7 +65,7 @@ public class SettingsController {
         MenuBar.moveSlider(leftSlider, rightSlider, menu, menuClose, profile, profileClose);
 
         // Initialise brightness settings from session
-        double chosenBrightness = UserSession.getBrightness();
+        double chosenBrightness = UserSession.brightnessAdjustAutoVal();
         brightnessSlider.setValue(chosenBrightness);
         UserPreferences.adjustBrightness(parentPane, chosenBrightness);
     }
@@ -92,7 +92,7 @@ public class SettingsController {
             if (selectedImageFile != null) {
                 try {
                     // Code below taken from: jewelsea. (2022). How to save a file uploaded by FileChooser to a directory in your project [Answer to forum post]. Stack Overflow. https://stackoverflow.com/questions/72294934/how-to-save-a-file-uploaded-by-filechooser-to-a-directory-in-your-project
-                    Path destinationPath = Paths.get("src/main/resources/com/example/sleepwell/images/", selectedImageFile.getName());
+                    Path destinationPath = Paths.get("src/main/resources/com/example/sleepwell/account-images/", selectedImageFile.getName());
                     Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                     accountDao.updateImage(userAccount.getId(), selectedImageFile.getName());
                     errorMessage.setText("Profile and image updated successfully!");

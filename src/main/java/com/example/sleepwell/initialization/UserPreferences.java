@@ -39,7 +39,7 @@ public class UserPreferences {
     // Adjust brightness method that can be called independently
     public static void setAvatarImage(String imageName, Circle accountImage) {
         try {
-            File file = new File("src/main/resources/com/example/sleepwell/images/", imageName);
+            File file = new File("src/main/resources/com/example/sleepwell/account-images/", imageName);
             if (file.exists()) {
                 Image image = new Image(file.toURI().toString());
                 accountImage.setFill(new ImagePattern(image));
