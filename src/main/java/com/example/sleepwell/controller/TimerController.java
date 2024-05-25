@@ -29,7 +29,20 @@ public class TimerController {
     private Label menu, menuClose;
     @FXML
     private Circle profile, profileClose;
-
+    @FXML
+    private TextField monField;
+    @FXML
+    private TextField tueField;
+    @FXML
+    private TextField wedField;
+    @FXML
+    private TextField thuField;
+    @FXML
+    private TextField friField;
+    @FXML
+    private TextField satField;
+    @FXML
+    private TextField sunField;
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
     private String userImage = accountDao.getAccount(session.getUserId()).getImage();
@@ -64,7 +77,7 @@ public class TimerController {
 
     public void onStop() {
         timer.stop();
-        addingTimer();
+       // addingTimer();
     }
 
     public void onReset() {
@@ -108,17 +121,21 @@ public class TimerController {
         SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
         UserSession session = UserSession.getInstance();
         Integer id = session.getUserId();
-        String monday = something.setText();
-        String tuesday = something.setText();
-        String wednesday = something.setText();
-        String thursday = something.setText();
-        String friday = something.setText();
-        String saturday = something.setText();
-        String sunday = something.setText();
-        SleepSchedule newsleepschedule = new SleepSchedule(monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 
-        sleepScheduleDAO.updateSleepSchedule(id, newsleepschedule);
 
+        String monday = monField.getText();
+        String tuesday = tueField.getText();
+        String wednesday = wedField.getText();
+        String thursday = thuField.getText();
+        String friday = friField.getText();
+        String saturday = satField.getText();
+        String sunday = sunField.getText();
+
+
+        SleepSchedule newSleepSchedule = new SleepSchedule(id, monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+
+
+        sleepScheduleDAO.updateSleepSchedule(id, newSleepSchedule);
     }
     public void addingTimer() {
         SqliteTimerDAO timerDao = new SqliteTimerDAO();
@@ -130,7 +147,7 @@ public class TimerController {
         String date = String.valueOf(today);
         String activity = "sleep";
 
-        // Create an Timer object with the user data
+        // Create a Timer object with the user data
         Timer newTimer = new Timer(id, timer, date, activity);
 
         // Add the new timer to the database
