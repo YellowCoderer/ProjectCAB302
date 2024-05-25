@@ -94,7 +94,7 @@
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
-                                <JFXButton alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="TImer">
+                                <JFXButton alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Timer">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
