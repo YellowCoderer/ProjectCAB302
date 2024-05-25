@@ -90,7 +90,8 @@ public class TimerController {
 
     public void onStop() {
         timer.stop();
-       // addingTimer();
+        addingTimer();
+
     }
 
     public void onReset() {
@@ -107,12 +108,14 @@ public class TimerController {
 
     public void onHome(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
+    }
+
+    public void startup(){
         SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
         UserSession session = UserSession.getInstance();
         Integer id = session.getUserId();
         SleepSchedule newsleepschedule = new SleepSchedule(id, "empty","empty","empty","empty","empty","empty","empty");
         sleepScheduleDAO.addSleepSchedule(newsleepschedule);
-
     }
 
     public void addingHistory() {
@@ -131,6 +134,7 @@ public class TimerController {
     }
 
     public void editSched(ActionEvent event) throws IOException {
+        startup();
         SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
         UserSession session = UserSession.getInstance();
         Integer id = session.getUserId();

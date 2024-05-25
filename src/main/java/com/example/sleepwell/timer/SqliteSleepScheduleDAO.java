@@ -34,7 +34,7 @@ public class SqliteSleepScheduleDAO implements ISleepScheduleDAO{
     public void addSleepSchedule(SleepSchedule sleepschedule) {
         try {
             Statement statement = connection.createStatement();
-            String insertQuery = "INSERT IGNORE INTO schedule (userid, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ('" +
+            String insertQuery = "INSERT OR IGNORE INTO schedule (userid, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ('" +
                     sleepschedule.getSleepScheduleId() + "', '" +
                     sleepschedule.getMonday() + "', '" +
                     sleepschedule.getTuesday() + "', '" +
