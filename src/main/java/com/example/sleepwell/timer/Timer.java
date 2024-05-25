@@ -2,13 +2,13 @@ package com.example.sleepwell.timer;
 
 public class Timer {
     private int id;
-    private String timer;
+    private String time;
     private String date;
     private String activity;
 
-    public Timer(int id, String timer, String date, String activity) {
+    public Timer(int id, String time, String date, String activity) {
         this.id = id;
-        this.timer = timer;
+        this.time = time;
         this.date = date;
         this.activity = activity;
     }
@@ -30,11 +30,11 @@ public class Timer {
 
     /**receives and sets Timer*/
     public String getTimer() {
-        return timer;
+        return time;
     }
 
-    public void setTimer(String timer) {
-        this.timer = timer;
+    public void setTimer(String time) {
+        this.time = time;
     }
 
     /**receives and sets Date*/

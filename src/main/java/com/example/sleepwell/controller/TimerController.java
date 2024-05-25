@@ -1,6 +1,7 @@
 package com.example.sleepwell.controller;
 
 import com.example.sleepwell.database.SqliteAccountDAO;
+import com.example.sleepwell.database.SqliteConnection;
 import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.initialization.UserPreferences;
 import com.example.sleepwell.initialization.UserSession;
@@ -9,21 +10,27 @@ import com.example.sleepwell.timer.SqliteSleepScheduleDAO;
 import com.example.sleepwell.timer.SqliteTimerDAO;
 import com.example.sleepwell.timer.Timer;
 import javafx.animation.AnimationTimer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
-import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 
 public class TimerController {
+    private Connection connection = SqliteConnection.getInstance();
     @FXML
     private TextField stopwatchLabel;
     @FXML
@@ -48,6 +55,17 @@ public class TimerController {
     private TextField sunField;
     @FXML
     private ComboBox<String> pickList;
+    @FXML
+    private TableColumn<Timer, Integer> id;
+    @FXML
+    private TableColumn<Timer, String> time;
+    @FXML
+    private TableColumn<Timer, String> date;
+    @FXML
+    private TableColumn<Timer, String> activity;
+    @FXML
+    private TableView timertable;
+
 
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
@@ -91,7 +109,6 @@ public class TimerController {
     public void onStop() {
         timer.stop();
         addingTimer();
-
     }
 
     public void onReset() {
@@ -118,11 +135,34 @@ public class TimerController {
         sleepScheduleDAO.addSleepSchedule(newsleepschedule);
     }
 
+    ObservableList<Timer> listview = FXCollections.observableArrayList();
     public void addingHistory() {
-        SqliteTimerDAO timerDao = new SqliteTimerDAO();
-        UserSession session = UserSession.getInstance();
-        Integer id = session.getUserId();
-        timerDao.getAllTimer(id);
+        id.setCellValueFactory(new PropertyValueFactory<>("userid"));
+        time.setCellValueFactory(new PropertyValueFactory<>("timer"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        activity.setCellValueFactory(new PropertyValueFactory<>("activity"));
+        String query = "SELECT * FROM timers WHERE userid = ?";
+        try {
+            UserSession session = UserSession.getInstance();
+            int id = session.getUserId();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                listview.add(new Timer(
+                        resultSet.getInt("id"),
+                        resultSet.getString("timer"),
+                        resultSet.getString("date"),
+                        resultSet.getString("activity")
+                ));
+
+            }
+            timertable.setItems(listview);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void onSettings(ActionEvent event) throws IOException {

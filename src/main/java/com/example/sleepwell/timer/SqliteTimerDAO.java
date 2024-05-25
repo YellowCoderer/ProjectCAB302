@@ -1,5 +1,6 @@
 package com.example.sleepwell.timer;
 import com.example.sleepwell.database.SqliteConnection;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,11 +68,11 @@ public class SqliteTimerDAO implements ITimerDAO {
 
             if (resultSet.next()) {
                 int id = resultSet.getInt("userid");
-                String timer = resultSet.getString("timer");
+                String time = resultSet.getString("timer");
                 String date = resultSet.getString("date");
                 String activity = resultSet.getString("activity");
 
-                Timer timer1 = new Timer(id, timer, date, activity);
+                Timer timer1 = new Timer(id, time, date, activity);
                 return (Timer) timer1;
             }
         } catch (SQLException e) {
@@ -91,11 +92,11 @@ public class SqliteTimerDAO implements ITimerDAO {
 
             if (resultSet.next()) {
                 int id = resultSet.getInt("userid");
-                String timer = resultSet.getString("timer");
+                String time = resultSet.getString("timer");
                 String date = resultSet.getString("date");
                 String activity = resultSet.getString("activity");
 
-                Timer timer1 = new Timer(id, timer, date, activity);
+                Timer timer1 = new Timer(id, time, date, activity);
                 return (List<Timer>) timer1;
             }
         } catch (SQLException e) {
@@ -103,4 +104,6 @@ public class SqliteTimerDAO implements ITimerDAO {
         }
         return null;
     }
+
+
 }
