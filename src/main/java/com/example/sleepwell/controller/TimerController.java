@@ -4,6 +4,10 @@ import com.example.sleepwell.database.SqliteAccountDAO;
 import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.initialization.UserPreferences;
 import com.example.sleepwell.initialization.UserSession;
+import com.example.sleepwell.timer.SleepSchedule;
+import com.example.sleepwell.timer.SqliteSleepScheduleDAO;
+import com.example.sleepwell.timer.SqliteTimerDAO;
+import com.example.sleepwell.timer.Timer;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +15,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.List;
 
 public class TimerController {
     @FXML
@@ -23,6 +32,22 @@ public class TimerController {
     private Label menu, menuClose;
     @FXML
     private Circle profile, profileClose;
+    @FXML
+    private TextField monField;
+    @FXML
+    private TextField tueField;
+    @FXML
+    private TextField wedField;
+    @FXML
+    private TextField thuField;
+    @FXML
+    private TextField friField;
+    @FXML
+    private TextField satField;
+    @FXML
+    private TextField sunField;
+    @FXML
+    private ComboBox<String> pickList;
 
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
@@ -36,8 +61,15 @@ public class TimerController {
 
         UserPreferences.setAvatarImage(userImage, profile);
         UserPreferences.setAvatarImage(userImage, profileClose);
-    }
 
+        setupActivityBox();//initialise activity box
+
+    }
+    private void setupActivityBox() {
+        List<String> options = Arrays.asList("sleep", "workout", "reading");
+        pickList.getItems().addAll(options);
+        pickList.getSelectionModel().selectFirst();
+    }
     private long startTime;
 
     private AnimationTimer timer = new AnimationTimer() {
@@ -58,6 +90,7 @@ public class TimerController {
 
     public void onStop() {
         timer.stop();
+       // addingTimer();
     }
 
     public void onReset() {
@@ -74,6 +107,19 @@ public class TimerController {
 
     public void onHome(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
+        SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
+        UserSession session = UserSession.getInstance();
+        Integer id = session.getUserId();
+        SleepSchedule newsleepschedule = new SleepSchedule(id, "empty","empty","empty","empty","empty","empty","empty");
+        sleepScheduleDAO.addSleepSchedule(newsleepschedule);
+
+    }
+
+    public void addingHistory() {
+        SqliteTimerDAO timerDao = new SqliteTimerDAO();
+        UserSession session = UserSession.getInstance();
+        Integer id = session.getUserId();
+        timerDao.getAllTimer(id);
     }
 
     public void onSettings(ActionEvent event) throws IOException {
@@ -85,7 +131,43 @@ public class TimerController {
     }
 
     public void editSched(ActionEvent event) throws IOException {
-        //still needs code
+        SqliteSleepScheduleDAO sleepScheduleDAO = new SqliteSleepScheduleDAO();
+        UserSession session = UserSession.getInstance();
+        Integer id = session.getUserId();
+
+
+        String monday = monField.getText();
+        String tuesday = tueField.getText();
+        String wednesday = wedField.getText();
+        String thursday = thuField.getText();
+        String friday = friField.getText();
+        String saturday = satField.getText();
+        String sunday = sunField.getText();
+
+
+        SleepSchedule newSleepSchedule = new SleepSchedule(id, monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+
+
+        sleepScheduleDAO.updateSleepSchedule(id, newSleepSchedule);
     }
+    public void addingTimer() {
+        SqliteTimerDAO timerDao = new SqliteTimerDAO();
+        ZoneId zonedId = ZoneId.of( "Australia/Sydney" );
+        LocalDate today = LocalDate.now( zonedId );
+        UserSession session = UserSession.getInstance();
+        int id = session.getUserId();
+        String timer = stopwatchLabel.getText();
+        String date = String.valueOf(today);
+        String activity = "sleep";
+
+        // Create a Timer object with the user data
+        Timer newTimer = new Timer(id, timer, date, activity);
+
+        // Add the new timer to the database
+        timerDao.addTimer(newTimer);
+
+    }
+
+
 }
 
