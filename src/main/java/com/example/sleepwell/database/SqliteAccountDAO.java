@@ -21,8 +21,7 @@ public class SqliteAccountDAO implements IAccountsDAO{
                     + "lastName VARCHAR NOT NULL,"
                     + "password VARCHAR NOT NULL,"
                     + "email VARCHAR NOT NULL,"
-                    + "phone VARCHAR NOT NULL,"
-                    + "image VARCHAR DEFAULT 'Account.png'"
+                    + "phone VARCHAR NOT NULL"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -39,9 +38,9 @@ public class SqliteAccountDAO implements IAccountsDAO{
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
             String insertQuery = "INSERT INTO accounts (username, firstName, lastName, password, email, phone) VALUES "
-                    + "('Johnny101', 'John', 'Doe', 'password', 'johndoe@example.com', '0423423425'),"
-                    + "('Jane123', 'Jane', 'Doe', 'password1', 'janedoe@example.com', '0423423427'),"
-                    + "('JayZ_9', 'Jay', 'Doe', 'password2', 'jaydoe@example.com', '0423423429')";
+                    + "('Johnny101', 'John', 'Doe', 'password', johndoe@example.com, '0423423425', ),"
+                    + "('Jane123', 'Jane', 'Doe', 'password1', janedoe@example.com, '0423423427', ),"
+                    + "('JayZ_9', 'Jay', 'Doe', 'password2', jaydoe@example.com, '0423423429', )";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();
