@@ -11,4 +11,6 @@ module com.example.sleepwell {
     exports com.example.sleepwell.controller;
     opens com.example.sleepwell.controller to javafx.fxml;
     opens com.example.sleepwell.timer to javafx.base;
+    exports com.example.sleepwell.Statistics;
+    opens com.example.sleepwell.Statistics to javafx.fxml;
 }
