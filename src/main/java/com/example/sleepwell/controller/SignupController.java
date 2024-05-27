@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 
 /**
- * Signup Control page to add function that use in the page such as add detail of the users to register to use the application.
+ * SignupController class add function that use in the page such as add detail of the users to register to use the application.
  */
 public class SignupController {
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
