@@ -52,6 +52,7 @@ public class TimerController {
 
     SqliteSleepScheduleDAO schedDAO = new SqliteSleepScheduleDAO();
 
+    /**initialise user's time history and sleepschedule*/
     public void initialize() {
         MenuBar.moveSlider(leftSlider, rightSlider, menu, menuClose, profile, profileClose);
 
@@ -61,7 +62,7 @@ public class TimerController {
         UserPreferences.setAvatarImage(userImage, profile);
         UserPreferences.setAvatarImage(userImage, profileClose);
 
-        /* Shows the user timer history*/
+        // Shows the user timer history
         ObservableList<Timer> timerTimer = timerDAO.getAllTimers(scheduleUsername);
 
         timeColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Timer, String>("timer"));
@@ -72,14 +73,14 @@ public class TimerController {
         actHistory.setRoot(root);
         actHistory.setShowRoot(false);
 
-        /* Sets up the user sleepschedule*/
+        // Sets up the user sleepschedule
         setupActivityBox();//initialise activity box
         setSchedule(); //visualise schedule
 
         new SqliteSleepScheduleDAO();
     }
 
-    /* set's user's sleepschedule*/
+    /** set's user's sleepschedule*/
     public void setSchedule() {
         SleepSchedule schedule = schedDAO.getSleepSchedule(session.getUsername());
 
@@ -108,14 +109,14 @@ public class TimerController {
         }
     }
 
-    /* A list of activities user's can choose for the timer */
+    /** A list of activities user's can choose for the timer */
     private void setupActivityBox() {
         List<String> options = Arrays.asList("sleep", "workout", "reading");
         pickList.getItems().addAll(options);
         pickList.getSelectionModel().selectFirst();
     }
     private long startTime;
-    /* Displays the timer for the user */
+    /** Displays the timer for the user */
     private AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -126,41 +127,41 @@ public class TimerController {
             stopwatchLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
         }
     };
-    /* Function of the start button on timer */
+    /** Function of the start button on timer */
     public void onStart() {
         startTime = System.nanoTime();
         timer.start();
     }
-    /* Function of the stop button on timer and saves user's time */
+    /** Function of the stop button on timer and saves user's time */
     public void onStop() {
         timer.stop();
         addingTimer();
     }
-    /* Resets the user's timer */
+    /** Resets the user's timer */
     public void onReset() {
         timer.stop();
         stopwatchLabel.setText("00:00:00");
     }
 
-    //Redirect user to login page
+    /**Redirect user to login page*/
     public void onSignOut(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "login.fxml", 520, 567);
         UserSession.cleanUserSession();
         UserSession.setBrightness(0.0); // Reset back to default brightness
     }
-    /* Takes user to home */
+    /** Takes user to home */
     public void onHome(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
     }
-    /* Takes user to setting */
+    /** Takes user to setting */
     public void onSettings(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "settings.fxml", 600, 400);
     }
-    /* Takes user to statistics */
+    /** Takes user to statistics */
     public void onStatistics(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "statistics.fxml", 600, 400);
     }
-    /* Allows user to edit their sleep schedule */
+    /** Allows user to edit their sleep schedule */
     public void editSched(ActionEvent event) throws IOException {
         String monday = monField.getText();
         String tuesday = tueField.getText();
@@ -173,7 +174,7 @@ public class TimerController {
         SleepSchedule newSleepSchedule = new SleepSchedule(scheduleUsername, monday, tuesday, wednesday, thursday, friday, saturday, sunday);
         schedDAO.updateSleepSchedule(scheduleUsername, newSleepSchedule);
     }
-    /* Grabs user's timer time and activity */
+    /** Grabs user's timer time and activity */
     public void addingTimer() {
         ZoneId zonedId = ZoneId.of( "Australia/Sydney" );
         LocalDate today = LocalDate.now( zonedId );
