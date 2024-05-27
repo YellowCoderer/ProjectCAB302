@@ -26,6 +26,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * SettingsController class for managing settings in the SleepWell application
+ */
 public class SettingsController {
     @FXML
     private JFXTextField firstNameTextField, lastNameTextField, emailTextField, usernameTextField, phoneTextField;
@@ -45,6 +48,9 @@ public class SettingsController {
     SqliteAccountDAO accountDao = new SqliteAccountDAO();
     UserSession session = UserSession.getInstance();
 
+    /**
+     * Method to initialise the controller and load user data
+     */
     public void initialize() {
         // Load user data once from the database
         Accounts userAccount = accountDao.getAccount(session.getUserId());
@@ -71,6 +77,9 @@ public class SettingsController {
     }
 
     @FXML
+    /**
+     * Method to update user profile
+     */
     private void onUpdateProfile(ActionEvent event) {
         // Collect data from text fields
         String username = usernameTextField.getText();
@@ -105,7 +114,9 @@ public class SettingsController {
         }
     }
 
-    // Allow users to select and image when they press on their profile icon
+    /**
+     * Allow users to select and image when they press on their profile icon
+     */
     public void onAccountImage(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -127,28 +138,40 @@ public class SettingsController {
             System.out.println("No image has been selected.");
         }
     }
-
+    /**
+     * Method to change brightness of the scene
+     */
     public void onChangeBrightness(ActionEvent event) {
         double chosenBrightness = brightnessSlider.getValue();
         UserPreferences.adjustBrightness(parentPane, chosenBrightness);
         UserSession.setBrightness(chosenBrightness);
     }
-
-    //Redirect user to login page
+    /**
+     * Method to sign out the user and redirect to the login page
+     */
     public void onSignOut(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "login.fxml", 520, 567);
         UserSession.cleanUserSession();
         UserSession.setBrightness(0.0); // Reset back to default brightness
     }
 
+    /**
+     * Redirect to the home page
+     */
     public void onHome(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "hello-view.fxml", 600, 400);
     }
 
+    /**
+     * Redirect to the timer page
+     */
     public void onTimer(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "timer.fxml", 600, 400);
     }
 
+    /**
+     * Redirect to the statistics page
+     */
     public void onStatistics(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "statistics.fxml", 600, 400);
     }

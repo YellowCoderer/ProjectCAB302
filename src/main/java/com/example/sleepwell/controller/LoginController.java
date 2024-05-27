@@ -12,6 +12,9 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
+/**
+ * LoginController class is used for the user to connect to the main page of the application.
+ */
 public class LoginController {
     @FXML
     private Label loginMessageLabel;
@@ -20,6 +23,10 @@ public class LoginController {
     @FXML
     private JFXPasswordField passwordField; //done
 
+    /**
+     * This method is used to verify user credentials from a database and either login the user and redirects them to
+     * the main page or displays an error message if the login fails.
+     */
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         SqliteAccountDAO accountDao = new SqliteAccountDAO();
 
@@ -50,7 +57,9 @@ public class LoginController {
             loginMessageLabel.setText("No account found with the given identifier.");
         }
     }
-
+    /**
+     * The hyperlink that navigate user to the signup page
+     */
     public void onSignup(ActionEvent event) throws IOException {
         MenuBar.changeScene(event, "signup.fxml", 520, 567);
     }
