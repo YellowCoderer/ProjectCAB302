@@ -59,7 +59,7 @@
                     <children>
                         <VBox prefHeight="200.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                             <children>
-                                <JFXButton alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Home">
+                                <JFXButton fx:id="home" onAction="#onHome" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Home">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
