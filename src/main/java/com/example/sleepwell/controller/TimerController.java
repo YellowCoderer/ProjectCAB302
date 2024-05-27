@@ -28,6 +28,7 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 
+/** All the functions for the timer page */
 public class TimerController {
     @FXML
     private AnchorPane leftSlider, rightSlider, parentPane;
