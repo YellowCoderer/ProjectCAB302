@@ -153,15 +153,15 @@
                         <CategoryAxis prefHeight="17.0" prefWidth="288.0" side="BOTTOM" fx:id="x1" />
                      </xAxis>
                      <yAxis>
-                        <NumberAxis fx:id="y1" minorTickVisible="false" prefHeight="134.0" prefWidth="32.0" side="LEFT" upperBound="12.0" />
+                        <NumberAxis fx:id="y1" minorTickVisible="false" prefHeight="117.0" prefWidth="22.0" side="LEFT" upperBound="12.0" />
                      </yAxis>
                   </LineChart>
-                  <LineChart layoutX="1.0" layoutY="22.0" prefHeight="164.0" prefWidth="193.0">
+                  <LineChart fx:id="ActivityChart2" layoutX="1.0" layoutY="22.0" prefHeight="164.0" prefWidth="193.0">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <CategoryAxis side="BOTTOM" fx:id="x2" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis minorTickVisible="false" side="LEFT" upperBound="12.0" />
+                      <NumberAxis fx:id="y2" minorTickVisible="false" side="LEFT" upperBound="12.0" />
                     </yAxis>
                   </LineChart>
                   <Label layoutX="32.0" layoutY="178.0" prefHeight="15.0" prefWidth="161.0" text="Amount Of Sleep In A Week (hrs)">
@@ -170,16 +170,6 @@
                      </font>
                   </Label>
                   <Label layoutX="51.0" layoutY="9.0" text="Hours Spent On Activities">
-                     <font>
-                        <Font name="Arial Bold" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="88.0" layoutY="331.0" text="Days">
-                     <font>
-                        <Font name="Arial Bold" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="78.0" layoutY="164.0" text="Activities">
                      <font>
                         <Font name="Arial Bold" size="10.0" />
                      </font>

@@ -95,4 +95,20 @@ public class SqliteTimerDAO implements ITimerDAO {
         }
         return timers;
     }
+    private void insertSampleData() {
+        addTimer(new Timer("Johnny101", "8.0", "2024-05-21", "Sleeping"));
+        addTimer(new Timer("Johnny101", "6.5", "2024-05-22", "Sleeping"));
+        addTimer(new Timer("Johnny101", "7.0", "2024-05-23", "Sleeping"));
+        addTimer(new Timer("Johnny101", "8.0", "2024-05-24", "Sleeping"));
+        addTimer(new Timer("Johnny101", "5.5", "2024-05-25", "Sleeping"));
+        addTimer(new Timer("Johnny101", "6.0", "2024-05-26", "Sleeping"));
+        addTimer(new Timer("Johnny101", "8.0", "2024-05-21", "workout"));
+        addTimer(new Timer("Johnny101", "6.5", "2024-05-22", "reading"));
+        addTimer(new Timer("Johnny101", "7.0", "2024-05-23", "workout"));
+        addTimer(new Timer("Johnny101", "8.0", "2024-05-24", "reading"));
+        addTimer(new Timer("Johnny101", "5.5", "2024-05-25", "workout"));
+        addTimer(new Timer("Johnny101", "6.0", "2024-05-26", "reading"));
+
+    }
 }
+

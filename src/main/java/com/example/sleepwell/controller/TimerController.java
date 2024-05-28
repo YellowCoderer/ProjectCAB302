@@ -177,17 +177,32 @@ public class TimerController {
     }
     /** Grabs user's timer time and activity */
     public void addingTimer() {
-        ZoneId zonedId = ZoneId.of( "Australia/Sydney" );
-        LocalDate today = LocalDate.now( zonedId );
-        String timer = stopwatchLabel.getText();
+        ZoneId zonedId = ZoneId.of("Australia/Sydney");
+        LocalDate today = LocalDate.now(zonedId);
+        String timerString = stopwatchLabel.getText();
+
+        // Splitting the timerString using ":" delimiter
+        String[] timeComponents = timerString.split(":");
+
+        // Extracting hours, minutes, and seconds
+        int hours = Integer.parseInt(timeComponents[0]);
+        int minutes = Integer.parseInt(timeComponents[1]);
+        int seconds = Integer.parseInt(timeComponents[2]);
+
+        // Calculating the total time in hours
+        double totalHours = hours + (minutes / 60.0) + (seconds / 3600.0);
+        double roundedHours = Math.ceil(totalHours * 2) / 2.0;
+
+
         String date = String.valueOf(today);
         String activity = pickList.getValue();
 
         // Create a Timer object with the user data
-        Timer newTimer = new Timer(scheduleUsername, timer, date, activity);
+        Timer newTimer = new Timer(scheduleUsername, String.format("%.1f", roundedHours), date, activity);
 
         // Add the new timer to the database
         timerDAO.addTimer(newTimer);
     }
+
 }
 

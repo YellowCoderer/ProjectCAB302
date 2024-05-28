@@ -8,8 +8,14 @@ import com.example.sleepwell.initialization.MenuBar;
 import com.example.sleepwell.initialization.UserPreferences;
 import com.example.sleepwell.initialization.UserSession;
 import com.example.sleepwell.timer.SqliteTimerDAO;
+import com.example.sleepwell.timer.Timer;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
@@ -17,6 +23,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +37,14 @@ public class StatisticsController {
     private AnchorPane leftSlider, rightSlider, parentPane;
     @FXML
     private Label menu, menuClose;
+    @FXML
+    private LineChart<String, Number> ComputerChart1;
+    @FXML
+    private LineChart<String, Number> ActivityChart2;
+    @FXML
+    private CategoryAxis x1, x2;
+    @FXML
+    private NumberAxis y1, y2;
 
     private SqliteAccountDAO accountDao = new SqliteAccountDAO();
     private SqliteTimerDAO timerDAO = new SqliteTimerDAO();
@@ -47,7 +63,60 @@ public class StatisticsController {
         UserPreferences.setAvatarImage(userImage, profileClose);
 
         loadGoals();    // add the users goals to the list view
+        loadTimerData();
+        loadActivityData();
     }
+
+    private void loadTimerData() {
+        ObservableList<Timer> timers = timerDAO.getAllTimers(scheduleUsername);
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        for (Timer timer : timers) {
+            LocalDate date = LocalDate.parse(timer.getDate().get(), formatter);
+            String dayOfMonth = String.valueOf(date.getDayOfMonth());
+            series.getData().add(new XYChart.Data<>(dayOfMonth, Double.parseDouble(timer.getTimer().get())));
+        }
+
+        x1.setLabel("Days");
+
+        ComputerChart1.getData().add(series);
+
+    }
+    private void loadActivityData() {
+        ObservableList<Timer> timers = timerDAO.getAllTimers(scheduleUsername);
+
+        XYChart.Series<String, Number> workoutSeries = new XYChart.Series<>();
+        XYChart.Series<String, Number> readingSeries = new XYChart.Series<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        for (Timer timer : timers) {
+            LocalDate date = LocalDate.parse(timer.getDate().get(), formatter);
+            String dayOfMonth = String.valueOf(date.getDayOfMonth());
+            double duration = Double.parseDouble(timer.getTimer().get());
+
+            switch (timer.getActivity().get().toLowerCase()) {
+                case "workout":
+                    workoutSeries.getData().add(new XYChart.Data<>(dayOfMonth, duration));
+                    break;
+                case "reading":
+                    readingSeries.getData().add(new XYChart.Data<>(dayOfMonth, duration));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        workoutSeries.setName("Workout");
+        readingSeries.setName("Reading");
+
+        x2.setLabel("Days");
+        y2.setLabel("Hours");
+
+        ActivityChart2.getData().addAll(workoutSeries, readingSeries);
+    }
+
 
     private void loadGoals() {
         List<String> goals = goalsDao.getGoalsForUser(scheduleUsername);
