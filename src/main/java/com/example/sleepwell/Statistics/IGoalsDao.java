@@ -1,10 +1,11 @@
 package com.example.sleepwell.Statistics;
 
+import java.util.List;
+
 public interface IGoalsDao {
-    public static void saveGoalInDatabase(String goal) {
+    void saveGoalInDatabase(Goals goal);
 
-    }
+    void deleteGoalFromDatabase(String goal);
 
-    public static void deleteGoalFromDatabase(String goal) {
-    }
+    List<String> getGoalsForUser(String username);
 }

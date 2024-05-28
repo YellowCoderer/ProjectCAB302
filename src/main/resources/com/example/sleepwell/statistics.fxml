@@ -14,7 +14,7 @@
             <top>
                 <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1D70DA;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label fx:id="MenuClose" layoutX="11.0" layoutY="13.0" text="Menu">
+                        <Label fx:id="menuClose" layoutX="11.0" layoutY="13.0" text="Menu">
                             <graphic>
                                 <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -26,7 +26,7 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Label fx:id="Menu" layoutX="11.0" layoutY="13.0" text="Menu" textFill="WHITE">
+                        <Label fx:id="menu" layoutX="11.0" layoutY="13.0" text="Menu" textFill="WHITE">
                             <graphic>
                                 <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -55,11 +55,11 @@
                     </children></AnchorPane>
             </top>
             <left>
-                <AnchorPane fx:id="LeftSlider" prefHeight="350.0" prefWidth="123.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+                <AnchorPane fx:id="leftSlider" prefHeight="350.0" prefWidth="123.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                             <children>
-                                <JFXButton fx:id="home" onAction="#onHome" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="170.0" text="Home">
+                                <JFXButton fx:id="home" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHome" prefHeight="38.0" prefWidth="170.0" text="Home">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -100,7 +100,7 @@
                 </AnchorPane>
             </left>
             <right>
-                <AnchorPane fx:id="RightSlider" prefHeight="350.0" prefWidth="117.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+                <AnchorPane fx:id="rightSlider" prefHeight="350.0" prefWidth="117.0" style="-fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
                     <children>
                         <VBox prefHeight="300.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                             <children>
@@ -156,22 +156,22 @@
                         <NumberAxis fx:id="y1" minorTickVisible="false" prefHeight="134.0" prefWidth="32.0" side="LEFT" upperBound="12.0" />
                      </yAxis>
                   </LineChart>
-                  <BarChart layoutY="6.0" prefHeight="172.0" prefWidth="175.0">
+                  <LineChart layoutX="1.0" layoutY="22.0" prefHeight="164.0" prefWidth="193.0">
                     <xAxis>
-                      <CategoryAxis prefHeight="19.0" prefWidth="351.0" side="BOTTOM" />
+                      <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis minorTickVisible="false" side="LEFT" upperBound="12.0" />
                     </yAxis>
-                  </BarChart>
-                  <Label layoutX="14.0" layoutY="178.0" prefHeight="15.0" prefWidth="161.0" text="Amount Of Sleep In A Week (hrs)">
+                  </LineChart>
+                  <Label layoutX="32.0" layoutY="178.0" prefHeight="15.0" prefWidth="161.0" text="Amount Of Sleep In A Week (hrs)">
                      <font>
-                        <Font name="Arial Bold" size="9.0" />
+                        <Font name="Arial Bold" size="10.0" />
                      </font>
                   </Label>
-                  <Label layoutX="48.0" layoutY="7.0" text="Hours Spent On Activities">
+                  <Label layoutX="51.0" layoutY="9.0" text="Hours Spent On Activities">
                      <font>
-                        <Font name="Arial Bold" size="12.0" />
+                        <Font name="Arial Bold" size="10.0" />
                      </font>
                   </Label>
                   <Label layoutX="88.0" layoutY="331.0" text="Days">
@@ -185,12 +185,12 @@
                      </font>
                   </Label>
                   <ListView fx:id="goalListView" layoutX="197.0" layoutY="30.0" prefHeight="249.0" prefWidth="142.0" />
-                  <Hyperlink onAction="#deleteGoal"  layoutX="295.0" layoutY="7.0" prefHeight="28.0" prefWidth="44.0" text="Delete">
+                  <Hyperlink layoutX="295.0" layoutY="7.0" onAction="#deleteGoal" prefHeight="28.0" prefWidth="44.0" text="Delete">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink onAction="#addGoal" layoutX="268.0" layoutY="11.0" text="Add">
+                  <Hyperlink layoutX="268.0" layoutY="11.0" onAction="#addGoal" text="Add">
                      <font>
                         <Font size="11.0" />
                      </font>

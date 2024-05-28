@@ -9,6 +9,7 @@ public class SqliteAccountDAO implements IAccountsDAO{
 
     public SqliteAccountDAO(){
         createTable();
+      //  insertSampleData();
     }
 
     private void createTable() {

@@ -1,13 +1,22 @@
 package com.example.sleepwell.Statistics;
 
 public class Goals {
-    private String userName;
-    private String Goal;
+    private static String userName;
+    private static String Goal;
 
     public Goals(String userName, String Goal) {
-        this.userName = userName;
-        this.Goal = Goal;
+        Goals.userName = userName;
+        Goals.Goal = Goal;
 
+    }
+    public static String getGoalsuserName(){
+        return userName;
+    }
+    public static String getGoalsGoal(){
+        return Goal;
+    }
+    public void SetGoalsGoal (String Goal){
+        Goals.Goal = Goal;
     }
 
 }
