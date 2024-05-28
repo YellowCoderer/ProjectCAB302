@@ -184,7 +184,7 @@
                         <Font name="Arial Bold" size="10.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="goalListView" layoutX="197.0" layoutY="30.0" prefHeight="249.0" prefWidth="142.0" />
+                  <ListView fx:id="goalListView" layoutX="197.0" layoutY="30.0" prefHeight="249.0" prefWidth="159.0" />
                   <Hyperlink layoutX="295.0" layoutY="7.0" onAction="#deleteGoal" prefHeight="28.0" prefWidth="44.0" text="Delete">
                      <font>
                         <Font size="12.0" />
